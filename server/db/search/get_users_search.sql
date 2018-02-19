@@ -1,1 +1,1 @@
-SELECT username, firstname, lastname, description, summary FROM users
+SELECT username, firstname, lastname, description, imgurl FROM users
