@@ -12,9 +12,15 @@ module.exports = function(app) {
     return res.status(200).send('ok')
   })
 
-  router.get(`/`, (req, res) => {
-    console.log(`GET api/users/ hit`)
-    return res.status(200).send('ok')
+  router.get(`/:username`, (req, res) => {
+    app.get('db').users.get_user_details({username: req.params.username})
+      .then(response => {
+        return res.status(200).send(response)
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).send('there was an error')
+      })
   })
 
   return router
