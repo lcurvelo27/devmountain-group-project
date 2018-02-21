@@ -6,8 +6,8 @@ module.exports = function(app) {
 
   router.use('/skills', skills)
 
-  router.get(`/:username`, (req, res) => {
-    app.get('db').users.get_user_details({username: req.params.username})
+  router.get(`/`, (req, res) => {
+    app.get('db').users.get_user_details({authid: req.headers.authid})
       .then(response => {
         return res.status(200).send(response)
       })
