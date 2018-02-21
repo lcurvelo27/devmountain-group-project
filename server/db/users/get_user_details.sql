@@ -1,17 +1,17 @@
-SELECT users.*, skills_json.skills, education_json.education
+SELECT users.username, users.firstname, users.lastname, users.description, users.imgurl, skills_json.skills, education_json.education
 FROM users
 INNER JOIN (
-    SELECT username,
-            json_agg((SELECT x FROM(SELECT skill, lvl) x)) as skills
+    SELECT authid,
+            json_agg((SELECT x FROM(SELECT id, skill, lvl) x)) as skills
         FROM skills_table
-        GROUP BY username
+        GROUP BY authid
 ) skills_json
-ON users.username = skills_json.username
+ON users.authid = skills_json.authid
     INNER JOIN (
-        SELECT username,
-            json_agg((SELECT x FROM (SELECT school, emphasis, start_date, end_date) x)) AS education
+        SELECT authid,
+            json_agg((SELECT x FROM (SELECT id, school, emphasis, start_date, end_date) x)) AS education
         FROM   education_table
-        GROUP BY username
+        GROUP BY authid
     ) education_json
-    ON users.username = education_json.username
+    ON users.authid = education_json.authid
 WHERE users.username = ${username}

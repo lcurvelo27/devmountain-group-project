@@ -1,3 +1,4 @@
-INSERT INTO skills (lvl)
-VALUES (${lvl})
-WHERE skill = ${skill} AND username = ${username}
+UPDATE skills_table
+SET lvl = ${lvl}, skill = ${skill}
+WHERE id = ${id} AND authid = ${authid}
+RETURNING skill, lvl, id
