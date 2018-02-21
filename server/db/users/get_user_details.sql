@@ -14,4 +14,4 @@ ON users.authid = skills_json.authid
         GROUP BY authid
     ) education_json
     ON users.authid = education_json.authid
-WHERE users.authid = ${authid}
+WHERE users.username = ${username}
