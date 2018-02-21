@@ -1,2 +1,3 @@
-INSERT INTO skills (skill, lvl, username)
-VALUES (${skill}, ${lvl}, ${username})
+INSERT INTO skills_table (skill, lvl, authid)
+VALUES (${skill}, ${lvl}, ${authid})
+RETURNING skill, lvl, id
