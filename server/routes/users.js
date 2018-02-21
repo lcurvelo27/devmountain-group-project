@@ -2,15 +2,9 @@ module.exports = function(app) {
   const express = require('express')
   const router = express.Router()
 
-  router.post(`/`, (req, res) => {
-    console.log(`POST api/users/ hit`)
-    return res.status(200).send('ok')
-  })
+  const skills = require('./skills.js')(app)
 
-  router.put(`/`, (req, res) => {
-    console.log(`PUT api/users/ hit`)
-    return res.status(200).send('ok')
-  })
+  router.use('/skills', skills)
 
   router.get(`/:username`, (req, res) => {
     app.get('db').users.get_user_details({username: req.params.username})
