@@ -3,8 +3,10 @@ module.exports = function(app) {
   const router = express.Router()
 
   const skills = require('./skills.js')(app)
+  const education = require('./education.js')(app)
 
   router.use('/skills', skills)
+  router.use('/education', education)
 
   router.get(`/:username`, (req, res) => {
     app.get('db').users.get_user_details({username: req.params.username})
