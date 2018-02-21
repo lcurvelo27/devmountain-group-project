@@ -1,6 +1,6 @@
-CREATE TABLE skills (
+CREATE TABLE skills_table (
     id SERIAL PRIMARY KEY,
     skill VARCHAR(30),
     lvl INTEGER,
-    username VARCHAR(30) REFERENCES users(username)
+    authid VARCHAR(50) REFERENCES users(authid)
 )
