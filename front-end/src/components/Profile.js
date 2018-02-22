@@ -13,7 +13,7 @@ class Profile extends Component{
     }
   }
   getProfileDetails(username) {
-    axios.get(`http://localhost:3000/api/users/${username}`)
+    axios.get(`http://localhost:3005/api/users/${username}`)
       .then(res => {
         if(res.data[0]){
           this.setState({loading: false, user: res.data[0]})
