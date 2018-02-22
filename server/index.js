@@ -6,7 +6,7 @@ const routes = require('./routes/router.js')(app)
 
 app.use('/api', routes)
 
-const port = 3000
+const port = 3005
 app.listen(port, () =>{
   console.log(`listening on port ${port}`)
 })
