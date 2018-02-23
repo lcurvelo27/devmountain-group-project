@@ -2,9 +2,14 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import action from '../ducks/action'
-const {updateName} = action
+const {updateName, getUsersTiles} = action
 
 class Search extends Component{
+
+	componentDidMount() {
+		this.props.getUsersTiles()
+	}
+
 	render(){
 		return(
 			<div>
@@ -17,7 +22,8 @@ class Search extends Component{
 
 const mapStateToProps = state => {
 	return {
-		name: state.name
+		name: state.name,
+		users: state.users
 	}
 }
-export default connect(mapStateToProps, {updateName})(Search)
+export default connect(mapStateToProps, {updateName, getUsersTiles})(Search)

@@ -17,6 +17,14 @@
   },
   "homepage": "https://github.com/jfirwin/devmountain-group-project#readme",
   "dependencies": {
-    "dotenv": "^5.0.0"
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "massive": "^4.7.0",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.1"
   }
 }
