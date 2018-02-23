@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import action from '../ducks/action'
-const {updateName, getUsersTiles} = action
+import Navbar from './Navbar'
+import {updateName, getUsersTiles} from '../ducks/action'
+
 
 class Search extends Component{
 
@@ -11,10 +12,29 @@ class Search extends Component{
 	}
 
 	render(){
+		const tiles = this.props.users.map(user => {
+			return(
+				<div key={user.username} style={{'padding': 20}}>
+					<img src={user.imgurl} alt='avatar'/>
+					<div>
+						{user.firstname + ' ' + user.lastname} 						
+					</div>
+					<div>
+						{user.username}
+					</div>
+				</div>
+			)
+		})
 		return(
 			<div>
+				<div>
+					<Navbar />
+				</div>
 				<p>test</p>
 				<input type="text" onChange={(e) => this.props.updateName(e.target.value)}/>
+				<div style={{'display': 'flex', 'padding': 10}}>
+					{tiles}
+				</div>
 			</div>
 		)
 	}
