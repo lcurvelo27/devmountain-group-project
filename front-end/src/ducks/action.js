@@ -1,5 +1,4 @@
-var type = require('./actionType')
-const {UPDATE_NAME, GET_USERS} = type
+const {UPDATE_NAME, GET_USERS} = require('./actionType')
 const {getUsers} = require('./utils/api')
 
 module.exports = {
