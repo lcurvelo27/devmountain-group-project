@@ -4,17 +4,17 @@ import {Link} from 'react-router-dom'
 const Navbar = (props) => {
 
   let login =  <Link to='/login'>
-                  <a>Login/Signup</a>
+                  <p>Login/Signup</p>
                 </Link>
 
   let logout = <Link to='/logout'>
-                  <a>Logout</a>
+                  <p>Logout</p>
                 </Link>
-                
+
   return (
     <nav className='nav-container'>
       <Link to='/'>
-        <a>Logo/Home</a>
+        <p>Logo/Home</p>
       </Link>
       <div className='nav-content'>
         { props.user &&
