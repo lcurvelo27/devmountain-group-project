@@ -1,4 +1,4 @@
-import {UPDATE_NAME, GET_USERS_PENDING, GET_USERS_FULFILLED} from './action'
+import {UPDATE_NAME, GET_USERS_PENDING, GET_USERS_FULFILLED, GET_PROFILE_DETAILS_FULFILLED, GET_PROFILE_DETAILS_PENDING} from './action'
 import action from './action'
 import type from './actionType'
 
@@ -6,7 +6,9 @@ import type from './actionType'
 
 const initialState = {
 	name: '',
-	users: []
+	users: [],
+	user: null,
+	loading: false
 }
 
 function reducer(state = initialState, action){
@@ -17,9 +19,16 @@ function reducer(state = initialState, action){
 		case type.GET_USERS_FULFILLED:
 			return Object.assign({}, state, {users: action.payload})
 
+		case type.GET_PROFILE_DETAILS_PENDING:
+			return Object.assign({}, state, {loading: true})
+
+		case type.GET_PROFILE_DETAILS_FULFILLED:
+			return Object.assign({}, state, {loading: false, user: action.payload})
+
 		default:
 			return state
 	}
 }
 
 export default reducer
+

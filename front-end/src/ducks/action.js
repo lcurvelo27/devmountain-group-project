@@ -1,5 +1,5 @@
-const {UPDATE_NAME, GET_USERS} = require('./actionType')
-const {getUsers} = require('./utils/api')
+const {UPDATE_NAME, GET_USERS, GET_PROFILE_DETAILS} = require('./actionType')
+const {getUsers, getProfile} = require('./utils/api')
 
 module.exports = {
 	updateName: name => {
@@ -12,6 +12,12 @@ module.exports = {
 		return {
 			type: GET_USERS,
 			payload: getUsers()
+		}
+	},
+	getProfileDetails: (username) => {
+		return {
+			type: GET_PROFILE_DETAILS,
+			payload: getProfile(username)
 		}
 	}
 }

@@ -3,50 +3,31 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import DefaultProfile from './Themes/DefaultProfile'
 import MissingPage from './MissingPage'
+import {getProfileDetails} from '../ducks/action'
 
 class Profile extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      user: null
-    }
-  }
-  getProfileDetails(username) {
-    axios.get(`http://localhost:3005/api/users/${username}`)
-      .then(res => {
-        if(res.data[0]){
-          this.setState({loading: false, user: res.data[0]})
-        } else {
-          this.setState({loading: false, user: null})
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+
   componentDidMount() {
-    this.getProfileDetails(this.props.match.params.username)
+    this.props.getProfileDetails(this.props.match.params.username)
   }
   componentWillReceiveProps(nextProps) {
     console.log('receive props run')
     if(this.props.match.params.username !== nextProps.match.params.username) {
       console.log('usernames dont match')
-        this.setState({loading: true, user: null})
-        this.getProfileDetails(nextProps.match.params.username)
+        this.props.getProfileDetails(nextProps.match.params.username)
     }
   }
 	render(){
 		return(
 			<div>
         {
-          this.state.loading
+          this.props.loading
           ?
           <p>Loading...</p>
           :
-            this.state.user
+            this.props.user
             ?
-            <DefaultProfile user={this.state.user}/>
+            <DefaultProfile user={this.props.user}/>
             :
             <MissingPage username={this.props.match.params.username}/>
         }
@@ -57,7 +38,8 @@ class Profile extends Component{
 
 const mapStateToProps = state => {
 	return {
-		name: state.name
+		user: state.user,
+    loading: state.loading
 	}
 }
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, {getProfileDetails})(Profile)
