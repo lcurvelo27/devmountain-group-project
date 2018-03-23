@@ -6,7 +6,6 @@ import Navbar from '../Navbar'
 const DefaultProfile = (props) => {
   return (
     <div>
-      <Navbar/>
       <div className='cv-container column-center'>
         <img src={props.user.imgurl} alt={`${props.user.username} profile picture`} style={{'border-radius':100}}/>
         <h1>{props.user.firstname} {props.user.lastname}</h1>
