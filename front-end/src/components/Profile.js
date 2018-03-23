@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import DefaultProfile from './Themes/DefaultProfile'
 import MissingPage from './MissingPage'
+import Navbar from './Navbar'
 import {getProfileDetails} from '../ducks/action'
 
 class Profile extends Component{
@@ -20,6 +21,8 @@ class Profile extends Component{
 	render(){
 		return(
 			<div>
+        <Navbar user = {this.props.user}/>
+          <div>
         {
           this.props.loading
           ?
@@ -31,7 +34,8 @@ class Profile extends Component{
             :
             <MissingPage username={this.props.match.params.username}/>
         }
-			</div>
+          </div>
+			  </div>
 		)
 	}
 }
