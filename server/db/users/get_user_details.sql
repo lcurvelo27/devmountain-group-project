@@ -14,7 +14,7 @@ FROM users
     ) education_json ON users.authid = education_json.authid
       INNER JOIN (
         SELECT authid,
-            json_agg((SELECT x FROM (SELECT id, title, company, description, start_date, end_date) x)) AS experience
+            json_agg((SELECT x FROM (SELECT id, title, company, description, location, start_date, end_date) x)) AS experience
         FROM experience_table
         GROUP BY authid
       ) experience_json ON users.authid = experience_json.authid
