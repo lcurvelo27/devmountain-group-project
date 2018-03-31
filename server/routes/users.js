@@ -4,9 +4,11 @@ module.exports = function(app) {
 
   const skills = require('./skills.js')(app)
   const education = require('./education.js')(app)
+  const theme = require('./theme.js')(app)
 
   router.use('/skills', skills)
   router.use('/education', education)
+  router.use('/theme', theme)
 
   router.get(`/:username`, (req, res) => {
     app.get('db').users.get_user_details({username: req.params.username})
