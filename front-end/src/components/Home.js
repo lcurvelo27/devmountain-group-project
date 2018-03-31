@@ -1,24 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
+import {centerPiece, welcome} from './homeStyle'
 
 const Home = (props) => {
-  let centerPiece = {
-    width: '100%',
-    height: '100vh',
-    display: 'flex',
-    'flex-direction': 'column',
-    'justify-content': 'center',
-    'align-items': 'center'
-  }
-
-  let welcome = {
-    'font-family': 'Monoton',
-    'font-size': '60px',
-    'letter-spacing': '10px',
-    color: '#EEDE01',
-    'text-shadow': '0px 2px black'
-  }
 
   return (
     <div>

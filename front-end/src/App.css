@@ -34,23 +34,6 @@ a:visited{
   color:black;
 }
 
-.cv-container {
-  width: 100%;
-  padding: 20px;
-}
-
-.column-center{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.center{
-  display:flex;
-  flex-direction: row-reverse;
-}
-
 .cv-content{
   padding:30px;
 }
