@@ -36,6 +36,18 @@ const DefaultProfile = (props) => {
           </div>
           <div>
             <h2>Experience</h2>
+            {props.user.experience.map(experience => {
+              return(
+                <div key={experience.id}>
+                  <h4>{experience.title}</h4>
+                  <h5>{experience.company}</h5>
+                  <h5>{experience.location}</h5>
+                  <h5>{experience.description}</h5>
+                  <h6>Start Date: {experience.start_date}</h6>
+                  <h6>End Date: {experience.end_date}</h6>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
