@@ -2,9 +2,10 @@ module.exports = function(app) {
   const express = require('express')
   const router = express.Router()
 
-  router.post('/', (req, res) => {
+  router.post('/:username', (req, res) => {
       app.get('db').theme.update_theme({
       authid: req.body.authid,
+      username: req.body.username,
       theme: req.body.theme,
     })
       .then(response => {
