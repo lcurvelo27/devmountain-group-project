@@ -1,6 +1,7 @@
-import {UPDATE_NAME, GET_USERS_PENDING, GET_USERS_FULFILLED, GET_PROFILE_DETAILS_FULFILLED, GET_PROFILE_DETAILS_PENDING} from './action'
+import {DARK, LIGHT, DEFAULT, UPDATE_NAME, GET_USERS_PENDING, GET_USERS_FULFILLED, GET_PROFILE_DETAILS_FULFILLED, GET_PROFILE_DETAILS_PENDING} from './action'
 import action from './action'
 import type from './actionType'
+import {dark, light, defaultTheme} from '../components/Themes/themes'
 
 
 
@@ -8,7 +9,9 @@ const initialState = {
 	name: '',
 	users: [],
 	user: null,
-	loading: false
+	loading: false,
+	color: null,
+	theme: defaultTheme
 }
 
 function reducer(state = initialState, action){
@@ -24,6 +27,15 @@ function reducer(state = initialState, action){
 
 		case type.GET_PROFILE_DETAILS_FULFILLED:
 			return Object.assign({}, state, {loading: false, user: action.payload})
+
+		case type.DEFAULT:
+			return Object.assign({}, state, {theme: defaultTheme})
+
+		case type.LIGHT:
+			return Object.assign({}, state, {theme: light})
+		
+		case type.DARK:
+			return Object.assign({}, state, {theme: dark})
 
 		default:
 			return state

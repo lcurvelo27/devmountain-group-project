@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
+import {setTheme} from '../../ducks/action'
 
 
 const DefaultProfile = (props) => {
   return (
     <div>
-      <div className='cv-container column-center'>
+      <div style={props.theme.cvContainer}>
         <img src={props.user.imgurl} alt={`${props.user.username} profile picture`} style={{'borderRadius':100}}/>
         <h1>{props.user.firstname} {props.user.lastname}</h1>
         <h5>{props.user.description}</h5>
         <hr/>
-        <div className='cv-content center'>
-          <div style={{'paddingLeft':150, 'borderLeft':'1px solid #8E8200', 'marginLeft':150}}>
+        <div style={props.theme.cvContent}>
+          <div style={props.theme.centerPiece}>
             <h2>Skills</h2>
               {props.user.skills.map(skill => {
                 return(
@@ -58,7 +59,8 @@ const DefaultProfile = (props) => {
 function mapStateToProps(state) {
   return {
     // add correct props here
-    state: state
+    state: state,
+    theme: state.theme
   }
 }
-export default connect(mapStateToProps)(DefaultProfile)
+export default connect(mapStateToProps, {setTheme})(DefaultProfile)
