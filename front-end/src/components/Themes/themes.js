@@ -1,5 +1,5 @@
 module.exports = {
-	yellow: {
+	defaultTheme: {
 		cvContainer: {
   			width: '100%',
   			padding: '20px',
@@ -20,7 +20,7 @@ module.exports = {
 			'marginLeft':'150px'
 		}
 	},
-	red: {
+	light: {
 		cvContainer: {
   			width: '100%',
   			padding: '20px',
@@ -41,7 +41,7 @@ module.exports = {
 			'marginLeft':'150px'
 		}
 	},
-	green:{
+	dark:{
 		cvContainer: {
   			width: '100%',
   			padding: '20px',

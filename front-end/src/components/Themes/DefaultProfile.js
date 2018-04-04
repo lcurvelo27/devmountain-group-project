@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {updateYellow} from '../../ducks/action'
+import {setTheme} from '../../ducks/action'
 
 
 const DefaultProfile = (props) => {
   return (
     <div>
-    <select name="colors" id="colors" onChange={(e) => props.updateYellow(e.target.value)}>
-      <option value="YELLOW"> yellow</option>
-      <option value="RED"> red</option>     
-      <option value="GREEN"> green</option> 
-    </select>
       <div style={props.theme.cvContainer}>
         <img src={props.user.imgurl} alt={`${props.user.username} profile picture`} style={{'borderRadius':100}}/>
         <h1>{props.user.firstname} {props.user.lastname}</h1>
@@ -68,4 +63,4 @@ function mapStateToProps(state) {
     theme: state.theme
   }
 }
-export default connect(mapStateToProps, {updateYellow})(DefaultProfile)
+export default connect(mapStateToProps, {setTheme})(DefaultProfile)

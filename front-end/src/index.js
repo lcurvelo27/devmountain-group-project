@@ -5,6 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {HashRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
+import 'font-awesome/css/font-awesome.min.css'
 import store from './store'
 
 ReactDOM.render(

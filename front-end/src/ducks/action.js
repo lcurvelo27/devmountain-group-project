@@ -21,9 +21,9 @@ module.exports = {
 			payload: getProfile(username)
 		}
 	},
-	updateYellow: (color) => {
+	setTheme: (type) => {
 		return {
-			type: color
+			type: type
 		}
 	}
 }
