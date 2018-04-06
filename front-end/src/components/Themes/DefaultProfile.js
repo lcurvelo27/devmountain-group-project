@@ -58,7 +58,6 @@ const DefaultProfile = (props) => {
 
 function mapStateToProps(state) {
   return {
-    // add correct props here
     state: state,
     theme: state.theme
   }

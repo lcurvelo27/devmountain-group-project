@@ -8,5 +8,6 @@ module.exports = {
 	GET_PROFILE_DETAILS_FULFILLED: 'GET_PROFILE_DETAILS_FULFILLED',
 	DEFAULT: 'default',
 	LIGHT: 'light',
-	DARK: 'dark'
+	DARK: 'dark',
+	UPDATE_VALUE: 'UPDATE_VALUE'
 }
