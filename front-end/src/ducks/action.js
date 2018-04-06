@@ -1,23 +1,29 @@
-const {UPDATE_NAME, GET_USERS, GET_PROFILE_DETAILS} = require('./actionType')
-const {getUsers, getProfile} = require('./utils/api')
+const type = require('./actionType')
+const {getUsers, getProfile, updateEducation} = require('./utils/api')
 
 module.exports = {
 	updateName: name => {
 		return {
-			type: UPDATE_NAME,
+			type: type.UPDATE_NAME,
 			payload: name
 		}
 	},
 	getUsersTiles: () => {
 		return {
-			type: GET_USERS,
+			type: type.GET_USERS,
 			payload: getUsers()
 		}
 	},
 	getProfileDetails: (username) => {
 		return {
-			type: GET_PROFILE_DETAILS,
+			type: type.GET_PROFILE_DETAILS,
 			payload: getProfile(username)
+		}
+	},
+	updateEducation: (details) => {
+		return {
+			type: type.UPDATE_EDUCATION,
+			payload: updateEducation(details)
 		}
 	}
 }

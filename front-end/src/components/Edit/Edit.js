@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {getProfileDetails} from '../../ducks/action'
+import {getProfileDetails, updateEducation} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
 
-class Profile extends Component{
+class Profile extends Component{x
   componentDidMount() {
     this.props.getProfileDetails(this.props.match.params.username)
   }
@@ -29,10 +29,10 @@ class Profile extends Component{
             <TextField title="Bio" value={this.props.user.description}/>
             <hr/>
             Education
-            {this.props.user.education.map(school => {
+            {this.props.user.education.map((school, index) => {
               return(
                 <div>
-                  <EducationFields value={school}/>
+                  <EducationFields index={index} update={this.props.updateEducation}/>
                 </div>
               )
             })}
@@ -59,4 +59,4 @@ const mapStateToProps = state => {
     loading: state.loading
 	}
 }
-export default connect(mapStateToProps, {getProfileDetails})(Profile)
+export default connect(mapStateToProps, {getProfileDetails, updateEducation})(Profile)
