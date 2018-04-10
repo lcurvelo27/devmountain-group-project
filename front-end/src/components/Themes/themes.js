@@ -9,7 +9,7 @@ module.exports = {
   			'flexDirection': 'column',
   			'justifyContent': 'center',
   			'alignItems': 'center',
-  			'backgroundColor': '#FFF9F9'
+  			'backgroundColor': '#FFFFFF'
   		},
 		cvContent:{
 			display: 'flex',
@@ -58,14 +58,14 @@ module.exports = {
 	light: {
 		cvContainer: {
   			width: '80%',
-  			border: '2px solid #C6ACAC',
+  			border: '3px solid #C6ACAC',
   			padding: '20px',
   			color: '#FFFFFF',
   			'display': 'flex',
   			'flexDirection': 'column',
   			'justifyContent': 'center',
   			'alignItems': 'center',
-  			'backgroundColor': '#FFF9F9'
+  			'backgroundColor': '#FFFFFF'
   		},
 		cvContent:{
 			display: 'flex',
@@ -114,14 +114,14 @@ module.exports = {
 	dark:{
 		cvContainer: {
   			width: '80%',
-  			border: '2px solid #C6ACAC',
+  			border: '3px solid #C6ACAC',
   			padding: '20px',
   			color: '#FFFFFF',
   			'display': 'flex',
   			'flexDirection': 'column',
   			'justifyContent': 'center',
   			'alignItems': 'center',
-  			'backgroundColor': '#FFF9F9'
+  			'backgroundColor': '#FFFFFF'
   		},
 		cvContent:{
 			display: 'flex',
