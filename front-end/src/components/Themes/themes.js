@@ -45,10 +45,14 @@ module.exports = {
 			marginTop: '100px'
 		},
 		titleColor: {
-			color: '#110044'
+			color: '#110044',
+			fontFamily: 'Montserrat',
+			fontWeight: '400'
 		},
 		textColor: {
-			color: '#454152'
+			color: '#454152', 
+			familyFont: 'Montserrat',
+			fontWeight: '200'
 		}
 	},
 	light: {
@@ -97,10 +101,14 @@ module.exports = {
 			marginTop: '100px'
 		},
 		titleColor: {
-			color: '#473C36'
+			color: '#473C36',
+			familyFont: 'Montserrat',
+			fontWeight: '400'
 		},
 		textColor: {
-			color: '#7F7069'
+			color: '#7F7069',
+			familyFont: 'Montserrat',
+			fontWeight: '200'
 		}
 	},
 	dark:{
@@ -148,10 +156,14 @@ module.exports = {
 			marginTop: '100px'
 		},
 		titleColor: {
-			color: '#730303'
+			color: '#730303',
+			familyFont: 'Montserrat',
+			fontWeight: '400'
 		},
 		textColor: {
-			color: '#8D4A4A'
+			color: '#8D4A4A',
+			familyFont: 'Montserrat',
+			fontWeight: '200'
 		}
 	}
 }

@@ -18,19 +18,19 @@ const DefaultProfile = (props) => {
             <h2 style={props.theme.titleColor}>Skills</h2>
               {props.user.skills.map(skill => {
                 return(
-                  <div key={skill.skill} style={props.theme.textColor}>
-                    <h5>{skill.skill}: {skill.lvl}</h5>
+                  <div key={skill.skill}>
+                    <h5 style={props.theme.textColor}>{skill.skill}: {skill.lvl}</h5>
                   </div>
                 )
               })}
             <h2 style={props.theme.titleColor}>Education</h2>
             {props.user.education.map(school => {
               return(
-                <div key={school.school} style={props.theme.textColor}>
-                  <h4>{school.school}</h4>
-                  <h5>{school.emphasis}</h5>
-                  <h6>Start Date: {school.start_date}</h6>
-                  <h6>End Date: {school.end_date}</h6>
+                <div key={school.school}>
+                  <h4 style={props.theme.titleColor}>{school.school}</h4>
+                  <h5 style={props.theme.titleColor}>{school.emphasis}</h5>
+                  <h6 style={props.theme.textColor}>Start Date: {school.start_date}</h6>
+                  <h6 style={props.theme.textColor}>End Date: {school.end_date}</h6>
                 </div>
               )
             })}
@@ -39,13 +39,13 @@ const DefaultProfile = (props) => {
             <h2 style={props.theme.titleColor}>Experience</h2>
             {props.user.experience.map(experience => {
               return(
-                <div key={experience.id} style={props.theme.textColor}>
-                  <h4>{experience.title}</h4>
-                  <h5>{experience.company}</h5>
-                  <h5>{experience.location}</h5>
-                  <h5>{experience.description}</h5>
-                  <h6>Start Date: {experience.start_date}</h6>
-                  <h6>End Date: {experience.end_date}</h6>
+                <div key={experience.id}>
+                  <h4 style={props.theme.titleColor}>{experience.title}</h4>
+                  <h5 style={props.theme.textColor}>{experience.company}</h5>
+                  <h5 style={props.theme.textColor}>{experience.location}</h5>
+                  <h5 style={props.theme.textColor}>{experience.description}</h5>
+                  <h6 style={props.theme.textColor}>Start Date: {experience.start_date}</h6>
+                  <h6 style={props.theme.textColor}>End Date: {experience.end_date}</h6>
                 </div>
               )
             })}
