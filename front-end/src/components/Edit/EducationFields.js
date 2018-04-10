@@ -1,42 +1,61 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux'
+// prop => index
+// mapStateToProps(state)
+// education: user.education[index]
 
-class TextField extends Component{
-
+class EducationField extends Component{
+  constructor() {
+    super()
+    this.state = {
+      education: {
+        school: null,
+        emphasis: null,
+        id: null,
+        start_date: null,
+        end_date: null
+      },
+      editing: false
+    }
+  }
   componentDidMount() {
-    let education = this.props.value
-    this.setState({education})
+    console.log(this.props.school)
   }
   updateValue(newValue) {
-    this.setState({education: newValue})
+    this.setState({school: newValue, editing: true})
   }
   cancelEdit() {
-    this.setState({education: this.props.value})
+    console.log(this.props.schoolField)
+    this.setState({school: this.props.schoolField, editing: false})
   }
+  
   render(){
+    console.log(this.props.schoolField)
     return (
       <div>
         School Number
         <div>
           <label>
             <div>
-              School<input type="text" value={this.state.education.school} onChange={(e) => this.updateValue('school', e.target.value)}/>
+              School<input type="text" value={this.state.education.school ? this.state.education.school : this.props.schoolField} onChange={(e) => this.updateValue(e.target.value)}/>
             </div>
             <div>
-              Emphasis<input type="text" value={this.state.education.emphasis} onChange={(e) => this.updateValue('emphasis', e.target.value)}/>
+              Emphasis<input type="text" onChange={(e) => this.updateValue('emphasis', e.target.value)}/>
             </div>
             <div>
-              Start Date<input type="text" value={this.state.education.start_date} onChange={(e) => this.updateValue('start_date', e.target.value)}/>
+              Start Date<input type="text" onChange={(e) => this.updateValue('start_date', e.target.value)}/>
             </div>
             <div>
-              End Date<input type="text" value={this.state.education.end_date} onChange={(e) => this.updateValue('end_date', e.target.value)}/>
+              End Date<input type="text" onChange={(e) => this.updateValue('end_date', e.target.value)}/>
             </div>
           </label>
         </div>
-        {this.state.education !== this.props.value
-          ?
+        {this.state.editing 
+          ? 
           <div>
           <button onClick={()=>this.cancelEdit()}>Cancel</button>
-          <button>Save</button>
+          <button onClick={()=>this.updateEducation(this.state.school)}>Save</button>
           </div>
           :
           null
@@ -45,4 +64,9 @@ class TextField extends Component{
     )
   }
 }
-export default TextField
+const mapStateToProps = state => {
+  return {
+    school: state.school
+  }
+}
+export default connect(mapStateToProps)(EducationField)
