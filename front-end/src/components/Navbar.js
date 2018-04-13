@@ -13,10 +13,10 @@ const Navbar = (props) => {
 
   return (
     <nav className='nav-container'>
+      <div className='nav-content'>    
       <Link to='/'>
         <p>Logo/Home</p>
       </Link>
-      <div className='nav-content'>
         { props.user &&
           logout
         }
