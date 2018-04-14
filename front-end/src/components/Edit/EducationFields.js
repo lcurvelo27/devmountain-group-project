@@ -6,26 +6,37 @@ class EducationField extends Component{
     super()
     this.state = {
       education: {
-        school: null,
-        emphasis: null,
-        id: null,
-        start_date: null,
-        end_date: null
+        school: '',
+        emphasis: '',
+        id: '',
+        start_date: '',
+        end_date: ''
       },
       editing: false
     }
   }
   componentDidMount() {
-    console.log(this.props.school)
+    console.log('this.props.school', this.props.school)
+    this.setState({education: this.props.school})
   }
-  updateValue(newValue) {
-    this.setState({school: newValue, editing: true})
+  updateSchool = (newValue) => {
+    this.setState({education: {...this.state.education, school: newValue}, editing: true})
   }
-  cancelEdit() {
+  updateEmphasis = (newValue) => {
+    this.setState({education: {...this.state.education, emphasis: newValue}, editing: true})
+  }
+  updateStartDate = (newValue) => {
+    this.setState({education: {...this.state.education, start_date: newValue}, editing: true})
+  }
+  updateEndDate = (newValue) => {
+    this.setState({education: {...this.state.education, end_date: newValue}, editing: true})
+  }
+  cancelEdit = () => {
 
     this.setState({education: this.props.school})
   }
-  saveEdit() {
+  saveEdit = () => {
+
     this.props.update(this.state.education)
     this.setState({education: this.props.school})
   }
@@ -34,33 +45,33 @@ class EducationField extends Component{
     console.log('I am the next props in education fields', nextProps)
 
   }
-  
+
   render(){
-    console.log(this.props.schoolField)
+
     return (
       <div>
         School Number
         <div>
           <label>
             <div>
-              School<input type="text" value={this.state.education.school ? this.state.education.school : this.props.schoolField} onChange={(e) => this.updateValue(e.target.value)}/>
+              School<input type="text" value={this.state.education.school} onChange={(e) => this.updateSchool(e.target.value)}/>
             </div>
             <div>
-              Emphasis<input type="text" onChange={(e) => this.updateValue('emphasis', e.target.value)}/>
+              Emphasis<input type="text" value={this.state.education.emphasis} onChange={(e) => this.updateEmphasis(e.target.value)}/>
             </div>
             <div>
-              Start Date<input type="text" onChange={(e) => this.updateValue('start_date', e.target.value)}/>
+              Start Date<input type="text" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
             </div>
             <div>
-              End Date<input type="text" onChange={(e) => this.updateValue('end_date', e.target.value)}/>
+              End Date<input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
         </div>
-        {this.state.editing 
-          ? 
+        {this.state.editing
+          ?
           <div>
           <button onClick={()=>this.cancelEdit()}>Cancel</button>
-          <button onClick={()=>this.updateEducation(this.state.school)}>Save</button>
+          <button onClick={()=>this.saveEdit()}>Save</button>
           </div>
           :
           null
@@ -71,4 +82,3 @@ class EducationField extends Component{
 }
 
 export default EducationField
-
