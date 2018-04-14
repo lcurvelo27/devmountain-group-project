@@ -1,4 +1,3 @@
-import {DARK, LIGHT, DEFAULT, UPDATE_NAME, GET_USERS_PENDING, GET_USERS_FULFILLED, GET_PROFILE_DETAILS_FULFILLED, GET_PROFILE_DETAILS_PENDING} from './action'
 import action from './action'
 import type from './actionType'
 import {dark, light, defaultTheme} from '../components/Themes/themes'
@@ -11,7 +10,8 @@ const initialState = {
 	user: null,
 	loading: false,
 	color: null,
-	theme: defaultTheme
+	theme: defaultTheme,
+	test: null
 }
 
 function reducer(state = initialState, action){
@@ -28,6 +28,7 @@ function reducer(state = initialState, action){
 		case type.GET_PROFILE_DETAILS_FULFILLED:
 			return Object.assign({}, state, {loading: false, user: action.payload})
 
+
 		case type.DEFAULT:
 			return Object.assign({}, state, {theme: defaultTheme})
 
@@ -37,10 +38,20 @@ function reducer(state = initialState, action){
 		case type.DARK:
 			return Object.assign({}, state, {theme: dark})
 
+		case type.UPDATE_EDUCATION:
+			return Object.assign({}, state)
+
+		case type.UPDATE_EDUCATION_FULFILLED:
+			let update = Object.assign({}, state)
+			let index = update.user.education.findIndex(school => school.id === action.payload.id)
+			update.user.education[index] = action.payload
+			console.log(update)
+			return update
+
+
 		default:
 			return state
 	}
 }
 
 export default reducer
-

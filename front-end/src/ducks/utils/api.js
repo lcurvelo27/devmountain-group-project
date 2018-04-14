@@ -17,5 +17,14 @@ module.exports = {
     	}).catch(err => {
         console.log(err)
       })
-  	}
+  	},
+	updateEducation(details) {
+		return axios.put(`http://localhost:3005/api/users/education`, details)
+			.then(response => {
+				return response.data[0]
+			})
+			.catch(error => {
+				console.log('there was an error', error)
+			})
+	}
 }
