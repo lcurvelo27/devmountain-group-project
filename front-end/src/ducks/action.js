@@ -1,5 +1,7 @@
 const type = require('./actionType')
+const api = require('./utils/api')
 const {getUsers, getProfile, updateEducation} = require('./utils/api')
+
 
 module.exports = {
 	updateName: name => {
@@ -11,13 +13,24 @@ module.exports = {
 	getUsersTiles: () => {
 		return {
 			type: type.GET_USERS,
-			payload: getUsers()
+			payload: api.getUsers()
 		}
 	},
 	getProfileDetails: (username) => {
 		return {
 			type: type.GET_PROFILE_DETAILS,
-			payload: getProfile(username)
+			payload: api.getProfile(username)
+		}
+	},
+	setTheme: (type) => {
+		return {
+			type: type
+		}
+	},
+	changeValue: (value) => {
+		return {
+			type: type.UDPATE_VALUE,
+			payload: getProfile(value)
 		}
 	},
 	updateEducation: (details) => {

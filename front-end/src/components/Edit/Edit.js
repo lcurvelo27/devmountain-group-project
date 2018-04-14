@@ -10,6 +10,7 @@ class Profile extends Component{x
   componentDidMount() {
     this.props.getProfileDetails(this.props.match.params.username)
   }
+                                
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate fired')
     console.log('nextProps', nextProps)
@@ -46,6 +47,7 @@ class Profile extends Component{x
               return(
                 <div>
                   <EducationFields school={school} update={this.props.updateEducation}/>
+
                 </div>
               )
             })}
@@ -61,16 +63,17 @@ class Profile extends Component{x
           :
           'Loading...'
         }
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   console.log('this is user', state.user)
 	return {
 		user: state.user,
+
     loading: state.loading
-	}
+  }
 }
 export default connect(mapStateToProps, {getProfileDetails, updateEducation})(Profile)

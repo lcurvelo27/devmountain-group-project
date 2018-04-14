@@ -5,6 +5,7 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import Edit from './components/Edit/Edit'
 
+
 export default(
 	<Switch>
 		<Route path='/' exact component={Home} />

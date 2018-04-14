@@ -18,3 +18,10 @@ values  ('abc123', 'DevMountain', 'Full Stack Web Development', '2017-08-01', '2
         ('def456', 'DevMountain', 'Full Stack Web Development', '2017-08-01', '2017-12-15'),
         ('def456', 'Utah Valley University', 'Graphic Design', '2012-08-01', '2016-05-15'),
         ('ghi789', 'DevMountain', 'Quality Assurance', '2017-08-01', '2017-12-15');
+insert into experience_table (title, company, location, description, start_date, end_date, authid)
+values  ('Senior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'abc123'),
+        ('Junior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'abc123'),
+        ('Senior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'def456'),
+        ('Junior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'def456'),
+        ('Senior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'ghi789'),
+        ('Junior Web Developer', 'Devmountain', 'Salt Lake City, UT', 'Full Stack Web Developer/Instructor, Mentor', '2017-08-01', '2017-12-15', 'ghi789');
