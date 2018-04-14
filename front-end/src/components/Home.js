@@ -3,18 +3,28 @@ import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import {welcome} from './homeStyle'
 import resume from './images/default-theme.png'
+import {Link} from 'react-router-dom'
 import '../App.css'
 
 const ButtonWindow = (props) => {
+  const center = {
+    'display': 'flex',
+    'flexDirection': 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
+
   return (
-    <div className='homeSection'>
-        <div>
-          <p>{props.children}</p>
+    <div className='homeSection' style={center}>
+        <div style={{textAlign: 'center'}}>
+          <p style={{'fontFamily': 'News Cycle', fontSize: '30px'}}>{props.children}</p>
         </div>
         <div>
-          <button>
-            {props.button}
-          </button>
+        <Link to={`/${props.button}`}>
+            <button className='button'>
+              {props.button}
+            </button>
+          </Link>
         </div>
       </div>
     )
