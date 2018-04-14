@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
-// prop => index
-// mapStateToProps(state)
-// education: user.education[index]
 
 class EducationField extends Component{
   constructor() {
@@ -33,6 +29,11 @@ class EducationField extends Component{
   }
   saveEdit() {
     this.props.update(this.state.education)
+    this.setState({education: this.props.school})
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log('I am the current props in education fields', this.props)
+    console.log('I am the next props in education fields', nextProps)
   }
   render(){
     return (
@@ -67,9 +68,4 @@ class EducationField extends Component{
     )
   }
 }
-const mapStateToProps = state => {
-  return {
-    school: state.user.education[this.props.index]
-  }
-}
-export default connect(mapStateToProps)(EducationField)
+export default EducationField

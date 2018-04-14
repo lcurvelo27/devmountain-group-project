@@ -10,7 +10,20 @@ class Profile extends Component{x
   componentDidMount() {
     this.props.getProfileDetails(this.props.match.params.username)
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate fired')
+    console.log('nextProps', nextProps)
+    if (this.props.user !== nextProps.user) {
+      return true
+    } else return false
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('I am the current props', this.props)
+    console.log('I ma the next props', nextProps )
+  }
 	render(){
+    console.log(11111, this.props.user)
 		return(
 			<div>
         <Navbar user = {this.props.user}/>
@@ -29,10 +42,10 @@ class Profile extends Component{x
             <TextField title="Bio" value={this.props.user.description}/>
             <hr/>
             Education
-            {this.props.user.education.map((school, index) => {
+            {this.props.user.education.map((school) => {
               return(
                 <div>
-                  <EducationFields index={index} update={this.props.updateEducation}/>
+                  <EducationFields school={school} update={this.props.updateEducation}/>
                 </div>
               )
             })}
@@ -54,6 +67,7 @@ class Profile extends Component{x
 }
 
 const mapStateToProps = state => {
+  console.log('this is user', state.user)
 	return {
 		user: state.user,
     loading: state.loading
