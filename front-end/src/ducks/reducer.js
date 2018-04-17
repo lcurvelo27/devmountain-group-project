@@ -34,7 +34,7 @@ function reducer(state = initialState, action){
 
 		case type.LIGHT:
 			return Object.assign({}, state, {theme: light})
-		
+
 		case type.DARK:
 			return Object.assign({}, state, {theme: dark})
 
@@ -43,9 +43,12 @@ function reducer(state = initialState, action){
 
 		case type.UPDATE_EDUCATION_FULFILLED:
 			let update = Object.assign({}, state)
-			let index = update.user.education.findIndex(school => school.id === action.payload.id)
-			update.user.education[index] = action.payload
-			console.log(update)
+			let index = update.user.education.findIndex(school => {
+
+				return school.id === action.payload.data[0].id
+			})
+
+			update.user.education[index] = action.payload.data[0]
 			return update
 
 
