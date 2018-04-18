@@ -10,7 +10,6 @@ class Profile extends Component{x
   componentDidMount() {
     this.props.getProfileDetails(this.props.match.params.username)
   }
-                                
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate fired')
     console.log('nextProps', nextProps)
@@ -43,17 +42,16 @@ class Profile extends Component{x
             <TextField title="Bio" value={this.props.user.description}/>
             <hr/>
             Education
-            {this.props.user.education.map((school) => {
+            {this.props.user.education.map((school, index) => {
               return(
-                <div>
+                <div key={`education_${index}`}>
                   <EducationFields school={school} update={this.props.updateEducation}/>
-
                 </div>
               )
             })}
-            {this.props.user.skills.map(skill => {
+            {this.props.user.skills.map((skill, index) => {
               return(
-                <div>
+                <div key={`skills_${index}`}>
                   <TextField title="Skill" value={skill.skill}/>
                   <TextField title="Level" value={skill.lvl}/>
                 </div>
