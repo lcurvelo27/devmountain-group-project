@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
 import {getProfileDetails, updateEducation} from '../../ducks/action'

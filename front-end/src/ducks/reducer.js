@@ -1,4 +1,3 @@
-import action from './action'
 import type from './actionType'
 import {dark, light, defaultTheme} from '../components/Themes/themes'
 
@@ -11,7 +10,6 @@ const initialState = {
 	loading: false,
 	color: null,
 	theme: defaultTheme,
-	test: null
 }
 
 function reducer(state = initialState, action){

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import {updateName, getUsersTiles} from '../ducks/action'
@@ -17,7 +16,7 @@ class Search extends Component{
 				<div key={user.username} style={{'padding': 20}}>
 					<img src={user.imgurl} alt='avatar'/>
 					<div>
-						{user.firstname + ' ' + user.lastname} 						
+						{user.firstname + ' ' + user.lastname}
 					</div>
 					<div>
 						{user.username}

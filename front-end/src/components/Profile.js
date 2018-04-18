@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux'
 import DefaultProfile from './Themes/DefaultProfile'
 import MissingPage from './MissingPage'
-import Navbar from './Navbar'
 import {Link} from 'react-router-dom'
 import {getProfileDetails, setTheme} from '../ducks/action'
 
@@ -26,7 +24,7 @@ class Profile extends Component{
         this.props.setTheme(this.props.user.theme)
     }
 		return(
-			<div>  
+			<div>
         {
           this.props.loading
           ?
