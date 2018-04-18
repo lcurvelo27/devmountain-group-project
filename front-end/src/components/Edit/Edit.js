@@ -11,18 +11,23 @@ class Profile extends Component{x
   }
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate fired')
-    console.log('nextProps', nextProps)
-    if (this.props.user !== nextProps.user) {
+
+    if (this.props.user != nextProps.user) {
+      console.log('think we should update, yeah do that')
       return true
-    } else return false
+    } else
+      console.log('don\'t update')
+    return false
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('I am the current props', this.props)
-    console.log('I ma the next props', nextProps )
+    console.log('componentWillReceiveProps fired')
+    if(nextProps.user){
+
+    }
   }
 	render(){
-    console.log(11111, this.props.user)
+    console.log(11111111, this.props.user)
 		return(
 			<div>
         <Navbar user = {this.props.user}/>
@@ -66,10 +71,8 @@ class Profile extends Component{x
 }
 
 const mapStateToProps = state => {
-  console.log('this is user', state.user)
 	return {
 		user: state.user,
-
     loading: state.loading
   }
 }
