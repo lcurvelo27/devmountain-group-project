@@ -5,9 +5,9 @@ class TextField extends Component{
     super()
     this.state = {
       skills: {
-        skill: null,
-        lvl: null,
-        id: null
+        skill: '',
+        lvl: '',
+        id: ''
       }
     }
   }
