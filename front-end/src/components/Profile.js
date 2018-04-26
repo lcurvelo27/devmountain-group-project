@@ -6,6 +6,9 @@ import MissingPage from './MissingPage'
 import Navbar from './Navbar'
 import {Link} from 'react-router-dom'
 import {getProfileDetails, setTheme} from '../ducks/action'
+import MediaQuery from 'react-responsive'
+import DefaultProfileMobile from './Themes/DefaultProfileMobile'
+
 
 class Profile extends Component{
 
@@ -27,7 +30,8 @@ class Profile extends Component{
     }
 		return(
 			<div>  
-        {
+        <MediaQuery query='(min-width: 1000px)'>
+      {
           this.props.loading
           ?
           <p>Loading...</p>
@@ -45,6 +49,27 @@ class Profile extends Component{
             :
             <MissingPage username={this.props.match.params.username}/>
         }
+        </MediaQuery>
+        <MediaQuery query='(max-width: 1000px)'>
+      {
+          this.props.loading
+          ?
+          <p>Loading...</p>
+          :
+            this.props.user
+            ?
+            <div>
+              <div>
+                <Link to='/'>
+                  <i className="fas fa-sign-out-alt"></i>
+                </Link>
+              </div>
+              <DefaultProfileMobile user={this.props.user}/>
+            </div>
+            :
+            <MissingPage username={this.props.match.params.username}/>
+        }
+        </MediaQuery>
         </div>
 		)
 	}

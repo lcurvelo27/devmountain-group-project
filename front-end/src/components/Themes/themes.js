@@ -36,6 +36,23 @@ module.exports = {
 			'justifyContent': 'center',
 			'backgroundColor': '#EBE6E3'
 		},
+		mobileWrapper:{
+			display: 'flex',
+			flexDirection: 'column',
+			'alignItems': 'center',
+			'justifyContent': 'center',
+			'backgroundColor': '#EBE6E3'		
+		},
+		cvContentMobile:{
+			display: 'flex',
+			'flexDirection': 'column',
+  			padding:'30px',
+  			marginTop: '30px',
+  			justifyContent: 'flex-start',
+  			alignItems: 'center',
+  			width: '100%',
+  			textAlign: 'center'
+		},
 		imageDiv: {
 			width: '100%',
 			display: 'flex',
@@ -67,7 +84,7 @@ module.exports = {
   			'alignItems': 'center',
   			'backgroundColor': '#FFFFFF'
   		},
-		cvContent:{
+		cvContent: { 
 			display: 'flex',
 			'flexDirection': 'row-reverse',
   			padding:'30px',
@@ -91,6 +108,23 @@ module.exports = {
 			'alignItems': 'center',
 			'justifyContent': 'center',
 			'backgroundColor': '#EBE6E3'
+		},
+		mobileWrapper:{
+			display: 'flex',
+			flexDirection: 'column',
+			'alignItems': 'center',
+			'justifyContent': 'center',
+			'backgroundColor': '#EBE6E3'		
+		},
+		cvContentMobile:{
+			display: 'flex',
+			'flexDirection': 'column',
+  			padding:'30px',
+  			marginTop: '30px',
+  			justifyContent: 'flex-start',
+  			alignItems: 'center',
+  			width: '100%',
+  			textAlign: 'center'
 		},
 		imageDiv: {
 			width: '100%',
@@ -146,6 +180,23 @@ module.exports = {
 			'alignItems': 'center',
 			'justifyContent': 'center',
 			'backgroundColor': '#A26868'
+		},
+		mobileWrapper:{
+			display: 'flex',
+			flexDirection: 'column',
+			'alignItems': 'center',
+			'justifyContent': 'center',
+			'backgroundColor': '#A26868'		
+		},
+		cvContentMobile:{
+			display: 'flex',
+			'flexDirection': 'column',
+  			padding:'30px',
+  			marginTop: '30px',
+  			justifyContent: 'flex-start',
+  			alignItems: 'center',
+  			width: '100%',
+  			textAlign: 'center'
 		},
 		imageDiv: {
 			width: '100%',
