@@ -11,7 +11,8 @@ const initialState = {
 	loading: false,
 	color: null,
 	theme: defaultTheme,
-	test: null
+	test: null,
+	searchString: ''
 }
 
 function reducer(state = initialState, action){

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
-import {updateName, getUsersTiles} from '../ducks/action'
+import {updateName, getUsersTiles, updateSearchString} from '../ducks/action'
 
 
 class Search extends Component{
@@ -25,6 +25,9 @@ class Search extends Component{
 				</div>
 			)
 		})
+
+		const searchString = this.props.searchString.trim().toLowerCase();
+
 		return(
 			<div>
 				<div>
@@ -43,7 +46,8 @@ class Search extends Component{
 const mapStateToProps = state => {
 	return {
 		name: state.name,
-		users: state.users
+		users: state.users,
+		searchString: state.searchString
 	}
 }
-export default connect(mapStateToProps, {updateName, getUsersTiles})(Search)
+export default connect(mapStateToProps, {updateName, getUsersTiles, updateSearchString})(Search)

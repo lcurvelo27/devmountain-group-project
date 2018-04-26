@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-// prop => index
-// mapStateToProps(state)
-// education: user.education[index]
 
 class EducationField extends Component{
   constructor() {
@@ -31,6 +28,7 @@ class EducationField extends Component{
   }
   
   render(){
+
     console.log(this.props.schoolField)
     return (
       <div>
@@ -54,8 +52,8 @@ class EducationField extends Component{
         {this.state.editing 
           ? 
           <div>
-          <button onClick={()=>this.cancelEdit()}>Cancel</button>
-          <button onClick={()=>this.updateEducation(this.state.school)}>Save</button>
+          <button onClick={()=>this.cancelEdit()} className='editPageButton'>Cancel</button>
+          <button onClick={()=>this.updateEducation(this.state.school)} className='editPageButton'>Save</button>
           </div>
           :
           null
