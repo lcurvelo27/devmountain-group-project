@@ -12,31 +12,35 @@ class Search extends Component{
 	}
 
 	render(){
-		const tiles = this.props.users.map(user => {
-			return(
-				<div key={user.username} style={{'padding': 20}}>
-					<img src={user.imgurl} alt='avatar'/>
-					<div>
-						{user.firstname + ' ' + user.lastname} 						
-					</div>
-					<div>
-						{user.username}
-					</div>
-				</div>
-			)
-		})
+		var tiles = this.props.users,
+			searchString = this.props.searchString.trim().toLowerCase();
 
-		const searchString = this.props.searchString.trim().toLowerCase();
-
+		if(searchString.length > 0) {
+			tiles = tiles.filter(user => user.firstname.toLowerCase().match(searchString))
+		}
 		return(
 			<div>
 				<div>
 					<Navbar />
 				</div>
 				<p>test</p>
-				<input type="text" onChange={(e) => this.props.updateName(e.target.value)}/>
+				<input type="text" onChange={(e) => this.props.updateSearchString(e.target.value)}/>
 				<div style={{'display': 'flex', 'padding': 10}}>
-					{tiles}
+					{
+						tiles.map(user => {
+							return(
+								<div key={user.username} style={{'padding': 20}}>
+									<img src={user.imgurl} alt='avatar'/>
+									<div>
+										{user.firstname + ' ' + user.lastname} 						
+									</div>
+									<div>
+										{user.username}
+									</div>
+								</div>
+							)
+						})
+					}
 				</div>
 			</div>
 		)

@@ -48,7 +48,9 @@ function reducer(state = initialState, action){
 			update.user.education[index] = action.payload
 			console.log(update)
 			return update
-
+		
+		case type.UPDATE_SEARCH_STRING:
+			return Object.assign({}, state, {searchString: action.payload})
 
 		default:
 			return state
