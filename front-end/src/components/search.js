@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import {updateName, getUsersTiles} from '../ducks/action'
 
-
 class Search extends Component{
 
 	componentDidMount() {
