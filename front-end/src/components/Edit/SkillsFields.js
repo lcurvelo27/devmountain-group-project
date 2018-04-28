@@ -38,8 +38,8 @@ class TextField extends Component{
         {this.state.education !== this.props.value
           ?
           <div>
-          <button onClick={()=>this.cancelEdit()}>Cancel</button>
-          <button>Save</button>
+          <button onClick={()=>this.cancelEdit()} className='editPageButton'>Cancel</button>
+          <button className='editPageButton'>Save</button>
           </div>
           :
           null

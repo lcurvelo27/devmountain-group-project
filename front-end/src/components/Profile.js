@@ -4,6 +4,58 @@ import DefaultProfile from './Themes/DefaultProfile'
 import MissingPage from './MissingPage'
 import {Link} from 'react-router-dom'
 import {getProfileDetails, setTheme} from '../ducks/action'
+import MediaQuery from 'react-responsive'
+import DefaultProfileMobile from './Themes/DefaultProfileMobile'
+
+const FullScreenCv = (props) => {
+  return(
+      <div>
+              {
+          props.loading
+          ?
+          <p>Loading...</p>
+          :
+            props.user
+            ?
+            <div>
+              <div>
+                <Link to='/'>
+                  <i className="fas fa-sign-out-alt"></i>
+                </Link>
+              </div>
+              <DefaultProfile user={props.user}/>
+            </div>
+            :
+            <MissingPage username={props.username}/>
+        }
+      </div>
+    )
+}
+
+const MobileSizeScreenCV = (props) => {
+  return(
+      <div>
+        {
+            props.loading
+            ?
+            <p>Loading...</p>
+            :
+              props.user
+              ?
+              <div>
+                <div>
+                  <Link to='/'>
+                    <i className="fas fa-sign-out-alt"></i>
+                  </Link>
+                </div>
+                <DefaultProfileMobile user={props.user}/>
+              </div>
+              :
+              <MissingPage username={props.username}/>
+          }
+      </div>
+    )
+}
 
 class Profile extends Component{
 
@@ -16,41 +68,33 @@ class Profile extends Component{
     if(this.props.match.params.username !== nextProps.match.params.username) {
       this.props.getProfileDetails(nextProps.match.params.username)
     }
-    if(this.props.user) {
-      if(this.props.user.theme){        
-        if(this.props.user.theme !== nextProps.user.theme) {
-          this.props.setTheme(nextProps.user.theme)
-        }
-      }
-    }
   }
 
 	render(){
+    
     if(this.props.user && this.props.user.theme){
         this.props.setTheme(this.props.user.theme)
-    }
+      }
+
 		return(
-			<div>
-        {
-          this.props.loading
-          ?
-          <p>Loading...</p>
-          :
-            this.props.user
-            ?
-            <div>
-              <div>
-                <Link to='/'>
-                  <i className="fas fa-sign-out-alt"></i>
-                </Link>
-              </div>
-              <DefaultProfile user={this.props.user}/>
-            </div>
-            :
-            <MissingPage username={this.props.match.params.username}/>
-        }
+			<div>  
+        <MediaQuery query='(min-width: 1000px)'>
+          <FullScreenCv 
+            user = {this.props.user} 
+            loading = {this.props.loading} 
+            username= {this.props.match.params.username}
+            />
+        </MediaQuery>
+        <MediaQuery query='(max-width: 1000px)'>
+          <MobileSizeScreenCV 
+            user = {this.props.user}
+            loading = {this.props.loading} 
+            username= {this.props.match.params.username}            
+          />
+        </MediaQuery>
         </div>
-		)
+		  )
+    
 	}
 }
 

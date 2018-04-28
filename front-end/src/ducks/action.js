@@ -38,5 +38,11 @@ module.exports = {
 			type: type.UPDATE_EDUCATION,
 			payload: updateEducation(details)
 		}
+	},
+	updateSearchString: (name) => {
+		return {
+			type: type.UPDATE_SEARCH_STRING,
+			payload: name
+		}
 	}
 }

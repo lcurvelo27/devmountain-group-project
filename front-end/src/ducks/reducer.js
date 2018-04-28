@@ -10,6 +10,7 @@ const initialState = {
 	loading: false,
 	color: null,
 	theme: defaultTheme,
+	searchString: ''
 }
 
 function reducer(state = initialState, action){
@@ -39,7 +40,6 @@ function reducer(state = initialState, action){
 			return Object.assign({}, state)
 
 		case type.UPDATE_EDUCATION_FULFILLED:
-			console.log('UPDATE_EDUCATION_FULFILLED fired')
 			let stateUpdate = Object.assign({}, state)
 			let userUpdate = Object.assign({}, stateUpdate.user)
 			let educationUpdate = Object.assign([], userUpdate.education)
@@ -51,6 +51,10 @@ function reducer(state = initialState, action){
 			userUpdate.education = educationUpdate
 			stateUpdate.user = userUpdate
 			return stateUpdate
+
+		case type.UPDATE_SEARCH_STRING:
+			return Object.assign({}, state, {searchString: action.payload})
+		
 		default:
 			return state
 	}

@@ -68,8 +68,8 @@ class EducationField extends Component{
         {this.state.education !== this.props.school
           ?
           <div>
-          <button onClick={()=>this.cancelEdit()}>Cancel</button>
-          <button onClick={()=>this.saveEdit()}>Save</button>
+            <button onClick={()=>this.cancelEdit()}>Cancel</button>
+            <button onClick={()=>this.saveEdit()}>Save</button>
           </div>
           :
           null
