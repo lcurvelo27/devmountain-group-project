@@ -1,4 +1,3 @@
-import action from './action'
 import type from './actionType'
 import {dark, light, defaultTheme} from '../components/Themes/themes'
 
@@ -11,7 +10,6 @@ const initialState = {
 	loading: false,
 	color: null,
 	theme: defaultTheme,
-	test: null,
 	searchString: ''
 }
 
@@ -27,15 +25,14 @@ function reducer(state = initialState, action){
 			return Object.assign({}, state, {loading: true})
 
 		case type.GET_PROFILE_DETAILS_FULFILLED:
-			return Object.assign({}, state, {loading: false, user: action.payload})
-
+			return Object.assign({}, state, {loading: false, user: action.payload.data[0]})
 
 		case type.DEFAULT:
 			return Object.assign({}, state, {theme: defaultTheme})
 
 		case type.LIGHT:
 			return Object.assign({}, state, {theme: light})
-		
+
 		case type.DARK:
 			return Object.assign({}, state, {theme: dark})
 
@@ -43,15 +40,21 @@ function reducer(state = initialState, action){
 			return Object.assign({}, state)
 
 		case type.UPDATE_EDUCATION_FULFILLED:
-			let update = Object.assign({}, state)
-			let index = update.user.education.findIndex(school => school.id === action.payload.id)
-			update.user.education[index] = action.payload
-			console.log(update)
-			return update
-		
+			let stateUpdate = Object.assign({}, state)
+			let userUpdate = Object.assign({}, stateUpdate.user)
+			let educationUpdate = Object.assign([], userUpdate.education)
+			console.log(educationUpdate)
+			let index = educationUpdate.findIndex(school => {
+				return school.id === action.payload.data[0].id
+			})
+			educationUpdate[index] = action.payload.data[0]
+			userUpdate.education = educationUpdate
+			stateUpdate.user = userUpdate
+			return stateUpdate
+
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
-
+		
 		default:
 			return state
 	}

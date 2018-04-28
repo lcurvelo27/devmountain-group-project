@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux'
 import DefaultProfile from './Themes/DefaultProfile'
 import MissingPage from './MissingPage'
-import Navbar from './Navbar'
 import {Link} from 'react-router-dom'
 import {getProfileDetails, setTheme} from '../ducks/action'
 import MediaQuery from 'react-responsive'
@@ -68,13 +66,19 @@ class Profile extends Component{
   componentWillReceiveProps(nextProps) {
     console.log('receive props run')
     if(this.props.match.params.username !== nextProps.match.params.username) {
-      console.log('usernames dont match')
-        this.props.getProfileDetails(nextProps.match.params.username)
+      this.props.getProfileDetails(nextProps.match.params.username)
+    }
+    if(this.props.user) {
+      if(this.props.user.theme){        
+        if(this.props.user.theme !== nextProps.user.theme) {
+          this.props.setTheme(nextProps.user.theme)
+        }
+      }
     }
   }
 
 	render(){
-    if(this.props.user){
+    if(this.props.user && this.props.user.theme){
         this.props.setTheme(this.props.user.theme)
     }
 		return(

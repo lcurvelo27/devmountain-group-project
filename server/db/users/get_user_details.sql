@@ -1,4 +1,4 @@
-SELECT users.username, users.firstname, users.lastname, users.description, users.imgurl, skills_json.skills, education_json.education, experience_json.experience
+SELECT users.username, users.firstname, users.lastname, users.description, users.imgurl, users.theme, skills_json.skills, education_json.education, experience_json.experience
 FROM users
   INNER JOIN (
       SELECT authid,

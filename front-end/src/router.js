@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Search from './components/search'
+import Search from './components/Search'
 import Profile from './components/Profile'
 import Home from './components/Home'
 import Edit from './components/Edit/Edit'

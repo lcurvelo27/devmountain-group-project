@@ -1,59 +1,75 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
 
 class EducationField extends Component{
   constructor() {
     super()
     this.state = {
       education: {
-        school: null,
-        emphasis: null,
-        id: null,
-        start_date: null,
-        end_date: null
-      },
-      editing: false
+        school: '',
+        emphasis: '',
+        id: '',
+        start_date: '',
+        end_date: ''
+      }
     }
   }
   componentDidMount() {
-    console.log(this.props.school)
+    console.log('this.props.school', this.props.school)
+    this.setState({education: this.props.school})
   }
-  updateValue(newValue) {
-    this.setState({school: newValue, editing: true})
+  updateSchool = (newValue) => {
+    this.setState({education: {...this.state.education, school: newValue}})
   }
-  cancelEdit() {
-    console.log(this.props.schoolField)
-    this.setState({school: this.props.schoolField, editing: false})
+  updateEmphasis = (newValue) => {
+    this.setState({education: {...this.state.education, emphasis: newValue}})
   }
-  
+  updateStartDate = (newValue) => {
+    this.setState({education: {...this.state.education, start_date: newValue}})
+  }
+  updateEndDate = (newValue) => {
+    this.setState({education: {...this.state.education, end_date: newValue}})
+  }
+  cancelEdit = () => {
+
+    this.setState({education: this.props.school})
+  }
+  saveEdit = () => {
+
+    this.props.update(this.state.education)
+    this.setState({education: this.props.school})
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.school !== this.props.school) {
+      this.setState({education: nextProps.school})
+    }
+  }
+
   render(){
 
-    console.log(this.props.schoolField)
     return (
       <div>
         School Number
         <div>
           <label>
             <div>
-              School<input type="text" value={this.state.education.school ? this.state.education.school : this.props.schoolField} onChange={(e) => this.updateValue(e.target.value)}/>
+              School<input type="text" value={this.state.education.school} onChange={(e) => this.updateSchool(e.target.value)}/>
             </div>
             <div>
-              Emphasis<input type="text" onChange={(e) => this.updateValue('emphasis', e.target.value)}/>
+              Emphasis<input type="text" value={this.state.education.emphasis} onChange={(e) => this.updateEmphasis(e.target.value)}/>
             </div>
             <div>
-              Start Date<input type="text" onChange={(e) => this.updateValue('start_date', e.target.value)}/>
+              Start Date<input type="text" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
             </div>
             <div>
-              End Date<input type="text" onChange={(e) => this.updateValue('end_date', e.target.value)}/>
+              End Date<input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
         </div>
-        {this.state.editing 
-          ? 
+        {this.state.education !== this.props.school
+          ?
           <div>
-          <button onClick={()=>this.cancelEdit()} className='editPageButton'>Cancel</button>
-          <button onClick={()=>this.updateEducation(this.state.school)} className='editPageButton'>Save</button>
+            <button onClick={()=>this.cancelEdit()}>Cancel</button>
+            <button onClick={()=>this.saveEdit()}>Save</button>
           </div>
           :
           null
@@ -62,9 +78,5 @@ class EducationField extends Component{
     )
   }
 }
-const mapStateToProps = state => {
-  return {
-    school: state.school
-  }
-}
-export default connect(mapStateToProps)(EducationField)
+
+export default EducationField

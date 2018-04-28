@@ -20,8 +20,9 @@ module.exports = function(app) {
   })
 
   router.put('/', (req, res) => {
+    console.log(req.body)
     app.get('db').education.update_education({
-      authid: req.body.authid,
+      authid: 'abc123',
       school: req.body.school,
       emphasis: req.body.emphasis,
       start_date: req.body.start_date,

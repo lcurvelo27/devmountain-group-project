@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import {updateName, getUsersTiles, updateSearchString} from '../ducks/action'
-
 
 class Search extends Component{
 
@@ -12,12 +10,14 @@ class Search extends Component{
 	}
 
 	render(){
+
 		var tiles = this.props.users,
 			searchString = this.props.searchString.trim().toLowerCase();
 
 		if(searchString.length > 0) {
 			tiles = tiles.filter(user => user.firstname.toLowerCase().match(searchString))
 		}
+
 		return(
 			<div>
 				<div>
@@ -54,4 +54,8 @@ const mapStateToProps = state => {
 		searchString: state.searchString
 	}
 }
+
 export default connect(mapStateToProps, {updateName, getUsersTiles, updateSearchString})(Search)
+
+
+

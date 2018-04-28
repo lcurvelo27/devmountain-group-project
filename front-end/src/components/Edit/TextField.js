@@ -4,7 +4,7 @@ class TextField extends Component{
   constructor() {
     super()
     this.state = {
-      value: null
+      value: ''
     }
   }
   componentDidMount() {
