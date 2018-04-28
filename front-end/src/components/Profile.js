@@ -14,13 +14,19 @@ class Profile extends Component{
   componentWillReceiveProps(nextProps) {
     console.log('receive props run')
     if(this.props.match.params.username !== nextProps.match.params.username) {
-      console.log('usernames dont match')
-        this.props.getProfileDetails(nextProps.match.params.username)
+      this.props.getProfileDetails(nextProps.match.params.username)
+    }
+    if(this.props.user) {
+      if(this.props.user.theme){        
+        if(this.props.user.theme !== nextProps.user.theme) {
+          this.props.setTheme(nextProps.user.theme)
+        }
+      }
     }
   }
 
 	render(){
-    if(this.props.user){
+    if(this.props.user && this.props.user.theme){
         this.props.setTheme(this.props.user.theme)
     }
 		return(
