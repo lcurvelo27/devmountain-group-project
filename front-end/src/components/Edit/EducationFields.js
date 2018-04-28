@@ -10,8 +10,7 @@ class EducationField extends Component{
         id: '',
         start_date: '',
         end_date: ''
-      },
-      editing: false
+      }
     }
   }
   componentDidMount() {
@@ -19,16 +18,16 @@ class EducationField extends Component{
     this.setState({education: this.props.school})
   }
   updateSchool = (newValue) => {
-    this.setState({education: {...this.state.education, school: newValue}, editing: true})
+    this.setState({education: {...this.state.education, school: newValue}})
   }
   updateEmphasis = (newValue) => {
-    this.setState({education: {...this.state.education, emphasis: newValue}, editing: true})
+    this.setState({education: {...this.state.education, emphasis: newValue}})
   }
   updateStartDate = (newValue) => {
-    this.setState({education: {...this.state.education, start_date: newValue}, editing: true})
+    this.setState({education: {...this.state.education, start_date: newValue}})
   }
   updateEndDate = (newValue) => {
-    this.setState({education: {...this.state.education, end_date: newValue}, editing: true})
+    this.setState({education: {...this.state.education, end_date: newValue}})
   }
   cancelEdit = () => {
 
@@ -40,9 +39,9 @@ class EducationField extends Component{
     this.setState({education: this.props.school})
   }
   componentWillReceiveProps(nextProps) {
-    console.log('I am the current props in education fields', this.props)
-    console.log('I am the next props in education fields', nextProps)
-
+    if(nextProps.school !== this.props.school) {
+      this.setState({education: nextProps.school})
+    }
   }
 
   render(){
@@ -66,7 +65,7 @@ class EducationField extends Component{
             </div>
           </label>
         </div>
-        {this.state.editing
+        {this.state.education !== this.props.school
           ?
           <div>
           <button onClick={()=>this.cancelEdit()}>Cancel</button>

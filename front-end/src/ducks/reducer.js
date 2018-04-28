@@ -24,8 +24,7 @@ function reducer(state = initialState, action){
 			return Object.assign({}, state, {loading: true})
 
 		case type.GET_PROFILE_DETAILS_FULFILLED:
-			return Object.assign({}, state, {loading: false, user: action.payload})
-
+			return Object.assign({}, state, {loading: false, user: action.payload.data[0]})
 
 		case type.DEFAULT:
 			return Object.assign({}, state, {theme: defaultTheme})
@@ -40,16 +39,18 @@ function reducer(state = initialState, action){
 			return Object.assign({}, state)
 
 		case type.UPDATE_EDUCATION_FULFILLED:
-			let update = Object.assign({}, state)
-			let index = update.user.education.findIndex(school => {
-
+			console.log('UPDATE_EDUCATION_FULFILLED fired')
+			let stateUpdate = Object.assign({}, state)
+			let userUpdate = Object.assign({}, stateUpdate.user)
+			let educationUpdate = Object.assign([], userUpdate.education)
+			console.log(educationUpdate)
+			let index = educationUpdate.findIndex(school => {
 				return school.id === action.payload.data[0].id
 			})
-
-			update.user.education[index] = action.payload.data[0]
-			return update
-
-
+			educationUpdate[index] = action.payload.data[0]
+			userUpdate.education = educationUpdate
+			stateUpdate.user = userUpdate
+			return stateUpdate
 		default:
 			return state
 	}
