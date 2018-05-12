@@ -37,25 +37,56 @@ function reducer(state = initialState, action){
 		case type.DARK:
 			return Object.assign({}, state, {theme: dark})
 
-		case type.UPDATE_EDUCATION:
-			return Object.assign({}, state)
+			case type.UPDATE_EDUCATION:
+				return Object.assign({}, state)
 
-		case type.UPDATE_EDUCATION_FULFILLED:
-			let stateUpdate = Object.assign({}, state)
-			let userUpdate = Object.assign({}, stateUpdate.user)
-			let educationUpdate = Object.assign([], userUpdate.education)
-			console.log(educationUpdate)
-			let index = educationUpdate.findIndex(school => {
-				return school.id === action.payload.data[0].id
-			})
-			educationUpdate[index] = action.payload.data[0]
-			userUpdate.education = educationUpdate
-			stateUpdate.user = userUpdate
-			return stateUpdate
+			case type.UPDATE_EDUCATION_FULFILLED:
+				console.log('UPDATE_EDUCATION_FULFILLED fired')
+				let educationStateUpdate = Object.assign({}, state)
+				let educationUserUpdate = Object.assign({}, educationStateUpdate.user)
+				let educationUpdate = Object.assign([], educationUserUpdate.education)
+				console.log(educationUpdate)
+				let educationIndex = educationUpdate.findIndex(school => {
+					return school.id === action.payload.data[0].id
+				})
+				educationUpdate[educationIndex] = action.payload.data[0]
+				educationUserUpdate.education = educationUpdate
+				educationStateUpdate.user = educationUserUpdate
+				return educationStateUpdate
+
+			case type.ADD_EDUCATION:
+				return Object.assign({}, state)
+
+			case type.ADD_EDUCATION_FULFILLED:
+				console.log('UPDATE_EDUCATION_FULFILLED fired')
+				let addEducationStateUpdate = Object.assign({}, state)
+				let addEducationUserUpdate = Object.assign({}, addEducationStateUpdate.user)
+				let addEducationUpdate = Object.assign([], addEducationUserUpdate.education)
+				addEducationUpdate.push(action.payload.data[0])
+				addEducationUserUpdate.education = addEducationUpdate
+				addEducationStateUpdate.user = addEducationUserUpdate
+				return addEducationStateUpdate
+
+			case type.DELETE_EDUCATION:
+				return Object.assign({}, state)
+
+			case type.DELETE_EDUCATION_FULFILLED:
+				console.log('delete', action.payload.data[0])
+				let deleteEducationState = Object.assign({}, state)
+				let deleteEducationUser = Object.assign({}, deleteEducationState.user)
+				let deleteEducationUpdate = Object.assign([], deleteEducationUser.education)
+				console.log(deleteEducationUpdate.update)
+				let deleteEducationIndex = deleteEducationUpdate.findIndex(education => {
+					return education.id === action.payload.data[0].id
+				})
+				deleteEducationUpdate.splice(deleteEducationIndex, 1)
+				deleteEducationUser.education = deleteEducationUpdate
+				deleteEducationState.user = deleteEducationUser
+				return deleteEducationState
 
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
-		
+
 		case type.UPDATE_EDIT_SELECTED:
 			return Object.assign({}, state, {editSelected: action.payload})
 
