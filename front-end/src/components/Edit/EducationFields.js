@@ -30,13 +30,10 @@ class EducationField extends Component{
     this.setState({education: {...this.state.education, end_date: newValue}})
   }
   cancelEdit = () => {
-
     this.setState({education: this.props.school})
   }
   saveEdit = () => {
-
     this.props.update(this.state.education)
-    this.setState({education: this.props.school})
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.school !== this.props.school) {
