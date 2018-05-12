@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {updateEducation} from '../../ducks/action'
+
 
 class EducationField extends Component{
   constructor() {
@@ -33,7 +36,7 @@ class EducationField extends Component{
     this.setState({education: this.props.school})
   }
   saveEdit = () => {
-    this.props.update(this.state.education)
+    this.props.updateEducation(this.state.education)
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.school !== this.props.school) {
@@ -55,7 +58,6 @@ class EducationField extends Component{
 
     return (
       <div>
-        School Number
         <div>
           <label>
             <div style={spacer}>
@@ -71,7 +73,7 @@ class EducationField extends Component{
               <span style={title}>End Date</span><input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
-          <button>Delete</button>
+          <button onClick={()=>{console.log('delete was clicked')}}>Delete</button>
         </div>
         {this.state.education !== this.props.school
           ?
@@ -86,5 +88,9 @@ class EducationField extends Component{
     )
   }
 }
-
-export default EducationField
+const mapStateToProps = state => {
+  return{
+    educationTest: true
+  }
+}
+export default connect(mapStateToProps, {updateEducation})(EducationField)

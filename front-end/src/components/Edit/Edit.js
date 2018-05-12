@@ -199,4 +199,4 @@ const mapStateToProps = state => {
     editSelected: state.editSelected
   }
 }
-export default connect(mapStateToProps, {getProfileDetails, updateEducation, updateEditSelected})(Profile)
+export default connect(mapStateToProps, {getProfileDetails, updateEditSelected})(Profile)
