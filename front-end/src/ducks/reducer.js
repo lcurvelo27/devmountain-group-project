@@ -10,7 +10,8 @@ const initialState = {
 	loading: false,
 	color: null,
 	theme: defaultTheme,
-	searchString: ''
+	searchString: '',
+	editSelected: ''
 }
 
 function reducer(state = initialState, action){
@@ -55,6 +56,10 @@ function reducer(state = initialState, action){
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
 		
+		case type.UPDATE_EDIT_SELECTED:
+			return Object.assign({}, state, {editSelected: action.payload})
+
+
 		default:
 			return state
 	}

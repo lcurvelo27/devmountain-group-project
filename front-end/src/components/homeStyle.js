@@ -2,18 +2,18 @@ import homeImage from './images/homeImage.jpeg'
 import mobileBackground from './images/homeMobileSize.jpeg'
 
  const welcome = {
-    'font-family': 'Monoton',
-    'font-size': '60px',
-    'letter-spacing': '10px',
+    'fontFamily': 'Monoton',
+    'fontSize': '60px',
+    'letterSpacing': '10px',
     color: '#FFFFFF',
-    'text-shadow': '0px 2px black'
+    'textShadow': '0px 2px black'
   } 
 
 const buttonsAlign = {
     width: '50%',
     display: 'flex',
     justifyContent: 'space-around',
-    'margin-top': '50px'
+    'marginTop': '50px'
   }
 
 const centerPieceFullSize = {

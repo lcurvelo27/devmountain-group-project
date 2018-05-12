@@ -44,5 +44,11 @@ module.exports = {
 			type: type.UPDATE_SEARCH_STRING,
 			payload: name
 		}
+	},
+	updateEditSelected: (option) => {
+		return {
+			type: type.UPDATE_EDIT_SELECTED,
+			payload: option
+		}
 	}
 }

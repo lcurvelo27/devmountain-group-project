@@ -19,6 +19,8 @@ class TextField extends Component{
   render(){
     const titleText = {
       width: '100px',
+      fontFamily: 'Montserrat',
+      fontWeigth: '200'
     }
 
     const labelDisplay ={
