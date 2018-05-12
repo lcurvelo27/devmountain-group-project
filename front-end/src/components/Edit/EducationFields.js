@@ -74,6 +74,7 @@ class EducationField extends Component{
               <span style={title}>End Date</span><input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
+          <button>Delete</button>
         </div>
         {this.state.education !== this.props.school
           ?
