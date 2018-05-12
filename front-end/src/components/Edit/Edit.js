@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {getProfileDetails, updateEducation, updateEditSelected} from '../../ducks/action'
+import {getProfileDetails, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
 import Radium from 'radium'
@@ -18,7 +18,7 @@ function ProfileInput(props){
     flexDirection : 'column',
     justifyContent: 'flex-start',
   }
-  
+
   const title = {
     fontSize: 25,
     fontFamily: 'Montserrat',
@@ -37,14 +37,14 @@ function ProfileInput(props){
   return(
     <div style={formContainer}>
       {
-        !props.selected && 
+        !props.selected &&
         <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignContent: 'flex-end', textAlign: 'center'}}>
           <h1 style={title}>Hi, {props.user.firstname}. please, choose an option on the navigation bar at your left.</h1>
         </div>
       }
 
-      { 
-        props.selected == 'Account' &&  
+      {
+        props.selected == 'Account' &&
         <div style={{height: '100%'}}>
           <h1 style={title}>Account</h1>
           <TextField title="Image URL" value={props.user.imgurl}/>
@@ -58,13 +58,13 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Education' && 
+          props.selected == 'Education' &&
           <div>
             <h1 style={title}>Education</h1>
             {props.user.education.map((school, index) => {
               return(
                 <div key={`education_${index}`} style={{marginBottom: 50}}>
-                  <EducationFields school={school} update={props.updateEducation}/>
+                  <EducationFields school={school}/>
                 </div>
               )
             })}
@@ -72,7 +72,7 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Skills' && 
+          props.selected == 'Skills' &&
           <div>
             <h1 style={title}>Skills</h1>
             {props.user.skills.map((skill, index) => {
@@ -84,7 +84,7 @@ function ProfileInput(props){
               )
             })}
           </div>
-        }          
+        }
     </div>
   )
 }
@@ -113,7 +113,7 @@ class Profile extends Component{
   }
 
 	render(){
-    
+
     const wrapper = {
       display: 'flex',
       flexDirection: 'column',
@@ -156,27 +156,27 @@ class Profile extends Component{
           ?
           <div style={box}>
             <div style={boxNav}>
-              <button 
-              onClick={() => this.props.updateEditSelected('Account')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Account')}
+              style={buttonStyle}
               key='Account'
 
-              > 
-              Account 
+              >
+              Account
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Education')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Education')}
+              style={buttonStyle}
               key='Education'
-              > 
-              Education 
+              >
+              Education
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Skills')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Skills')}
+              style={buttonStyle}
               key='Skills'
-              > 
-              Skills 
+              >
+              Skills
               </button>
             </div>
             <ProfileInput user={this.props.user} selected={this.props.editSelected}/>
@@ -190,7 +190,7 @@ class Profile extends Component{
 }
 
 
-Profile = Radium(Profile) 
+Profile = Radium(Profile)
 
 const mapStateToProps = state => {
 	return {
