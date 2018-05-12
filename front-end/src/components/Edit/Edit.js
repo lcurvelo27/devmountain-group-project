@@ -14,7 +14,6 @@ function ProfileInput(props){
   const formContainer = {
     width: '35vw',
     height: '90%',
-    border: '1px solid #F3F3F3',
     display: 'flex',
     flexDirection : 'column',
     justifyContent: 'flex-start',
@@ -50,25 +49,13 @@ function ProfileInput(props){
           <h1 style={title}>Account</h1>
           <TextField title="Image URL" value={props.user.imgurl}/>
           <TextField title="Username" value={props.user.username}/>
+          <h1 style={title}>Name</h1>
+          <TextField title="First" value={props.user.firstname}/>
+          <TextField title="Last" value={props.user.lastname}/>
+          <h1 style={title}>Description</h1>
+          <TextField title="Bio" value={props.user.description}/>
         </div>
         }
-
-        {
-          props.selected == 'Name' &&
-          <div>
-            <h1 style={title}>Name</h1>
-            <TextField title="First" value={props.user.firstname}/>
-            <TextField title="Last" value={props.user.lastname}/>
-          </div>
-        }
-
-        {
-          props.selected == 'Description' && 
-          <div>
-            <h1 style={title}>Description</h1>
-            <TextField title="Bio" value={props.user.description}/>
-          </div>
-        } 
 
         {
           props.selected == 'Education' && 
@@ -136,7 +123,7 @@ class Profile extends Component{
 
     const box = {
       display: 'flex',
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
       alignItems: 'center',
       width: '60vw',
       height: '70vh',
@@ -148,7 +135,8 @@ class Profile extends Component{
       display: 'flex',
       flexDirection: 'column',
       width: '30%',
-      height: '100%'
+      height: '100%',
+      backgroundColor: 'rgb(253, 253, 253)'
     }
 
     const buttonStyle = {
@@ -175,20 +163,6 @@ class Profile extends Component{
 
               > 
               Account 
-              </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Name')} 
-              style={buttonStyle} 
-              key='Name'
-              > 
-              Name 
-              </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Description')} 
-              style={buttonStyle} 
-              key='Description'
-              > 
-              Description 
               </button>
               <button 
               onClick={() => this.props.updateEditSelected('Education')} 
