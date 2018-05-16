@@ -71,13 +71,13 @@ function reducer(state = initialState, action){
 				return Object.assign({}, state)
 
 			case type.DELETE_EDUCATION_FULFILLED:
-				console.log('delete', action.payload.data[0])
+				console.log('delete', action.payload)
 				let deleteEducationState = Object.assign({}, state)
 				let deleteEducationUser = Object.assign({}, deleteEducationState.user)
 				let deleteEducationUpdate = Object.assign([], deleteEducationUser.education)
-				console.log(deleteEducationUpdate.update)
+				console.log('payload', action.payload)
 				let deleteEducationIndex = deleteEducationUpdate.findIndex(education => {
-					return education.id === action.payload.data[0].id
+					return education.id === action.payload.data.id
 				})
 				deleteEducationUpdate.splice(deleteEducationIndex, 1)
 				deleteEducationUser.education = deleteEducationUpdate
