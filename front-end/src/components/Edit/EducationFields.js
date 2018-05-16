@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {updateEducation} from '../../ducks/action'
-
+import {updateEducation, deleteEducation} from '../../ducks/action'
 
 class EducationField extends Component{
   constructor() {
@@ -38,6 +37,9 @@ class EducationField extends Component{
   saveEdit = () => {
     this.props.updateEducation(this.state.education)
   }
+  deleteEducation = () => {
+    this.props.deleteEducation(this.state.education)
+  }
   componentWillReceiveProps(nextProps) {
     if(nextProps.school !== this.props.school) {
       this.setState({education: nextProps.school})
@@ -67,13 +69,13 @@ class EducationField extends Component{
               <span style={title}>Emphasis</span><input type="text" value={this.state.education.emphasis} onChange={(e) => this.updateEmphasis(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>Start Date</span><input type="text" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
+              <span style={title}>Start Date</span><input type="date" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>End Date</span><input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
+              <span style={title}>End Date</span><input type="date" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
-          <button onClick={()=>{console.log('delete was clicked')}}>Delete</button>
+          <button onClick={()=>{this.deleteEducation()}}>Delete</button>
         </div>
         {this.state.education !== this.props.school
           ?
@@ -93,4 +95,4 @@ const mapStateToProps = state => {
     educationTest: true
   }
 }
-export default connect(mapStateToProps, {updateEducation})(EducationField)
+export default connect(mapStateToProps, {updateEducation, deleteEducation})(EducationField)
