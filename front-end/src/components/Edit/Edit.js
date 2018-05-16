@@ -4,6 +4,7 @@ import Navbar from '../Navbar'
 import {getProfileDetails, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import AddEducation from './AddEducation'
 import Radium from 'radium'
 import '../../App.css'
 
@@ -68,6 +69,7 @@ function ProfileInput(props){
                 </div>
               )
             })}
+            <AddEducation/>
           </div>
         }
 
