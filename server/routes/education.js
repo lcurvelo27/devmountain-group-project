@@ -44,7 +44,11 @@ module.exports = function(app) {
       id: req.body.id
     })
       .then(response => {
-        return res.status(200).send(response)
+        let update = {
+          id: req.body.id,
+          response: response
+        }
+        return res.status(200).send(update)
       })
       .catch(err => {
         console.log(error)
