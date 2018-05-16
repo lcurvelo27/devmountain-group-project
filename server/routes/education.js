@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   router.post('/', (req, res) => {
     app.get('db').education.create_education({
-      authid: req.body.authid,
+      authid: 'abc123',
       school: req.body.school,
       emphasis: req.body.emphasis,
       start_date: req.body.start_date,
