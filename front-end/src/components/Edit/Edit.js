@@ -176,7 +176,7 @@ class Profile extends Component{
               <button 
               onClick={() => this.props.updateEditSelected('Account')} 
               style={buttonStyle} 
-              key='Account'
+              key='Account' 
               > 
               Account 
               </button>
