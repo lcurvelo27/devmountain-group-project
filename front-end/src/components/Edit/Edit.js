@@ -93,7 +93,7 @@ function ProfileInput(props){
 
 
 
-class Profile extends Component{
+class Edit extends Component{
   componentDidMount() {
     this.props.getProfileDetails(this.props.match.params.username)
   }
@@ -195,4 +195,4 @@ const mapStateToProps = state => {
     editSelected: state.editSelected
   }
 }
-export default connect(mapStateToProps, {getProfileDetails, updateEditSelected})(Profile)
+export default connect(mapStateToProps, {getProfileDetails, updateEditSelected})(Edit)
