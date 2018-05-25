@@ -98,19 +98,13 @@ class Profile extends Component{
     this.props.getProfileDetails(this.props.match.params.username)
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate fired')
-
     if (this.props.user != nextProps.user || this.props.editSelected != nextProps.editSelected) {
-      console.log('think we should update, yeah do that')
       return true
-    } else
-      console.log('don\'t update')
-    return false
+    } else return false
   }
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps fired')
-    if(nextProps.user){
-
+    if(this.props.match.params.username !== nextProps.match.params.username) {
+      this.props.getProfileDetails(nextProps.match.params.username)
     }
   }
 
