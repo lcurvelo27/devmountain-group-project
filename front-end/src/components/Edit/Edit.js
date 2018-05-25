@@ -186,7 +186,7 @@ class Edit extends Component{
 }
 
 
-Profile = Radium(Profile)
+Edit = Radium(Edit)
 
 const mapStateToProps = state => {
 	return {
