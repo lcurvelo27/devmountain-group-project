@@ -75,7 +75,6 @@ class EducationField extends Component{
             </div>
           </label>
           <button onClick={()=>{this.deleteEducation()}}>Delete</button>
-        </div>
         {this.state.education !== this.props.school
           ?
           <div>
