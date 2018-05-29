@@ -21,10 +21,10 @@ module.exports = {
 		return axios.post(`http://localhost:3005/api/users/skills`, details)
 	},
 	updateSkill: (details) => {
-		console.log(details)
 		return axios.put(`http://localhost:3005/api/users/skills`, details)
 	},
 	deleteSkill: (details) => {
+		console.log(details)
 		return axios.delete(`http://localhost:3005/api/users/skills`, {data: details})
 	},
 	addExperience: (details) => {

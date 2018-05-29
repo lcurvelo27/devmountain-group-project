@@ -4,7 +4,9 @@ import Navbar from '../Navbar'
 import {getProfileDetails, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import SkillsFields from './SkillsFields'
 import AddEducation from './AddEducation'
+import AddSkill from './AddSkill'
 import Radium from 'radium'
 import '../../App.css'
 
@@ -80,11 +82,11 @@ function ProfileInput(props){
             {props.user.skills.map((skill, index) => {
               return(
                 <div key={`skills_${index}`}>
-                  <TextField title="Skill" value={skill.skill}/>
-                  <TextField title="Level" value={skill.lvl}/>
+                  <SkillsFields title="Skill" skills={skill}/>
                 </div>
               )
             })}
+            <AddSkill/>
           </div>
         }
     </div>
