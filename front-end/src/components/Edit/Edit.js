@@ -7,6 +7,7 @@ import EducationFields from './EducationFields'
 import SkillsFields from './SkillsFields'
 import AddEducation from './AddEducation'
 import AddSkill from './AddSkill'
+import ExperienceFields from './ExperienceFields'
 import Radium from 'radium'
 import '../../App.css'
 
@@ -20,6 +21,7 @@ function ProfileInput(props){
     display: 'flex',
     flexDirection : 'column',
     justifyContent: 'flex-start',
+    overflow: 'auto'
   }
 
   const title = {
@@ -76,7 +78,21 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Skills' &&
+          props.selected == 'Experience' && 
+          <div>
+            <h1 style={title}>Experience</h1>
+            {props.user.education.map((school, index) => {
+              return(
+                <div key={`experience_${index}`} style={{marginBottom: 50}}>
+                  <ExperienceFields experience={props.user.experience}/>
+                </div>
+              )
+            })}
+          </div>
+        }
+
+        {
+          props.selected == 'Skills' && 
           <div>
             <h1 style={title}>Skills</h1>
             {props.user.skills.map((skill, index) => {
@@ -158,9 +174,8 @@ class Edit extends Component{
               onClick={() => this.props.updateEditSelected('Account')}
               style={buttonStyle}
               key='Account'
-
               >
-              Account
+              Account 
               </button>
               <button
               onClick={() => this.props.updateEditSelected('Education')}
@@ -169,9 +184,16 @@ class Edit extends Component{
               >
               Education
               </button>
-              <button
-              onClick={() => this.props.updateEditSelected('Skills')}
-              style={buttonStyle}
+              <button 
+              onClick={() => this.props.updateEditSelected('Experience')} 
+              style={buttonStyle} 
+              key='Experience'
+              > 
+              Experience 
+              </button>
+              <button 
+              onClick={() => this.props.updateEditSelected('Skills')} 
+              style={buttonStyle} 
               key='Skills'
               >
               Skills

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
-import {updateName, getUsersTiles, updateSearchString} from '../ducks/action'
+import {getUsersTiles, updateSearchString} from '../ducks/action'
 import Radium from 'radium'
 import {Link} from 'react-router-dom'
 
@@ -147,7 +147,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, {updateName, getUsersTiles, updateSearchString})(Search)
+export default connect(mapStateToProps, {getUsersTiles, updateSearchString})(Search)
 
 
 

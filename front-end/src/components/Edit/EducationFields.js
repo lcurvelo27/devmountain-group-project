@@ -60,7 +60,6 @@ class EducationField extends Component{
 
     return (
       <div>
-        <div>
           <label>
             <div style={spacer}>
               <span style={title}>School</span> <input type="text" value={this.state.education.school} onChange={(e) => this.updateSchool(e.target.value)}/>

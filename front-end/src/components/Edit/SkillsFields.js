@@ -39,18 +39,28 @@ class SkillsFields extends Component{
   }
 
   render(){
+
+    const title = {
+      fontFamily: 'Montserrat',
+      familyWeight: '200'
+    }
+
+    const spacer = {
+      marginTop: 10
+    }
+
     return (
       <div>
         <div>
           <label>
-            <div>
-              Skill<input type="text" value={this.state.skills.skill} onChange={(e) => this.updateSkill(e.target.value)}/>
+            <div style={spacer}>
+              <span style={title}>Skill</span><input type="text" value={this.state.skills.skill} onChange={(e) => this.updateSkill(e.target.value)}/>
             </div>
-            <div>
-              Level<input type="text" value={this.state.skills.lvl} onChange={(e) => this.updateLevel(e.target.value)}/>
+            <div style={spacer}>
+              <span style={title}>Level</span><input type="text" value={this.state.skills.lvl} onChange={(e) => this.updateLevel(e.target.value)}/>
             </div>
           </label>
-          <button onClick={()=>this.deleteSkill()}>Delete</button>
+          <button onClick={()=>this.props.delete()}>Delete</button>
         </div>
         {this.state.skills !== this.props.skills
           ?
