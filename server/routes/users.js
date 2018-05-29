@@ -4,10 +4,12 @@ module.exports = function(app) {
 
   const skills = require('./skills.js')(app)
   const education = require('./education.js')(app)
+  const experience = require('./experience.js')(app)
   const theme = require('./theme.js')(app)
 
   router.use('/skills', skills)
   router.use('/education', education)
+  router.use('/experience', experience)
   router.use('/theme', theme)
 
   router.get(`/:username`, (req, res) => {

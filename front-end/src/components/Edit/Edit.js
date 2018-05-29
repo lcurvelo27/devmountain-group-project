@@ -78,13 +78,13 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Experience' && 
+          props.selected == 'Experience' &&
           <div>
             <h1 style={title}>Experience</h1>
-            {props.user.education.map((school, index) => {
+            {props.user.experience.map((job, index) => {
               return(
                 <div key={`experience_${index}`} style={{marginBottom: 50}}>
-                  <ExperienceFields experience={props.user.experience}/>
+                  <ExperienceFields experience={job}/>
                 </div>
               )
             })}
@@ -92,7 +92,7 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Skills' && 
+          props.selected == 'Skills' &&
           <div>
             <h1 style={title}>Skills</h1>
             {props.user.skills.map((skill, index) => {
@@ -175,7 +175,7 @@ class Edit extends Component{
               style={buttonStyle}
               key='Account'
               >
-              Account 
+              Account
               </button>
               <button
               onClick={() => this.props.updateEditSelected('Education')}
@@ -184,16 +184,16 @@ class Edit extends Component{
               >
               Education
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Experience')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Experience')}
+              style={buttonStyle}
               key='Experience'
-              > 
-              Experience 
+              >
+              Experience
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Skills')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Skills')}
+              style={buttonStyle}
               key='Skills'
               >
               Skills

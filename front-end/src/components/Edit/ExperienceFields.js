@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import {updateExperience, deleteExperience} from '../../ducks/action'
 
 class ExperienceFields extends Component{
   constructor() {
@@ -42,6 +43,9 @@ class ExperienceFields extends Component{
   saveEdit = () => {
     this.props.update(this.state.experience)
   }
+  deleteExperience = () => {
+    this.props.deleteExperience(this.state.experience)
+  }
   componentWillReceiveProps(nextProps) {
     if(nextProps.experience !== this.props.experience) {
       this.setState({experience: nextProps.experience})
@@ -81,7 +85,7 @@ class ExperienceFields extends Component{
             <div style={spacer}>
               <span style={title}>End Date</span><input type="text" value={this.state.experience.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
-            <button onClick={()=>this.props.delete()}>Delete</button>
+            <button onClick={()=>this.deleteExperience()}>Delete</button>
           </label>
         </div>
         {this.state.experience !== this.props.experience
@@ -98,6 +102,9 @@ class ExperienceFields extends Component{
   }
 }
 
-
-
-export default ExperienceFields
+const mapStateToProps = state => {
+  return{
+    experienceTest: true
+  }
+}
+export default connect(mapStateToProps, {updateExperience, deleteExperience})(ExperienceFields)
