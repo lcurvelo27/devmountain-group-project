@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {updateSkill, deleteSkill} from '../../ducks/action'
 
 class SkillsFields extends Component{
   constructor() {
@@ -25,7 +27,10 @@ class SkillsFields extends Component{
     this.setState({skills: this.props.skills})
   }
   saveEdit = () => {
-    this.props.update(this.state.skills)
+    this.props.updateSkill(this.state.skills)
+  }
+  deleteSkill = () => {
+    this.props.deleteSkill(this.state.skills)
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.skills !== this.props.skills) {
@@ -70,4 +75,9 @@ class SkillsFields extends Component{
     )
   }
 }
-export default SkillsFields
+const mapStateToProps = state => {
+  return{
+    skillTest: true
+  }
+}
+export default connect(mapStateToProps, {updateSkill, deleteSkill})(SkillsFields)

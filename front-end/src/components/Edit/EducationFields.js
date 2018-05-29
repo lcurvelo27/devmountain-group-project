@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {updateEducation, deleteEducation} from '../../ducks/action'
 
 class EducationField extends Component{
   constructor() {
@@ -30,13 +32,13 @@ class EducationField extends Component{
     this.setState({education: {...this.state.education, end_date: newValue}})
   }
   cancelEdit = () => {
-
     this.setState({education: this.props.school})
   }
   saveEdit = () => {
-
-    this.props.update(this.state.education)
-    this.setState({education: this.props.school})
+    this.props.updateEducation(this.state.education)
+  }
+  deleteEducation = () => {
+    this.props.deleteEducation(this.state.education)
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.school !== this.props.school) {
@@ -66,12 +68,14 @@ class EducationField extends Component{
               <span style={title}>Emphasis</span><input type="text" value={this.state.education.emphasis} onChange={(e) => this.updateEmphasis(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>Start Date</span><input type="text" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
+              <span style={title}>Start Date</span><input type="date" value={this.state.education.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>End Date</span><input type="text" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
+              <span style={title}>End Date</span><input type="date" value={this.state.education.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
           </label>
+          <button onClick={()=>{this.deleteEducation()}}>Delete</button>
+        </div>
         {this.state.education !== this.props.school
           ?
           <div>
@@ -85,5 +89,9 @@ class EducationField extends Component{
     )
   }
 }
-
-export default EducationField
+const mapStateToProps = state => {
+  return{
+    educationTest: true
+  }
+}
+export default connect(mapStateToProps, {updateEducation, deleteEducation})(EducationField)

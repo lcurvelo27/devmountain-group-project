@@ -1,7 +1,5 @@
 const type = require('./actionType')
 const api = require('./utils/api')
-const {getUsers, getProfile, updateEducation} = require('./utils/api')
-
 
 module.exports = {
 	updateName: name => {
@@ -29,14 +27,62 @@ module.exports = {
 	},
 	changeValue: (value) => {
 		return {
-			type: type.UDPATE_VALUE,
-			payload: getProfile(value)
+			type: type.UPDATE_VALUE,
+			payload: api.getProfile(value)
+		}
+	},
+	addEducation: (details) => {
+		return {
+			type: type.ADD_EDUCATION,
+			payload: api.addEducation(details)
 		}
 	},
 	updateEducation: (details) => {
 		return {
 			type: type.UPDATE_EDUCATION,
-			payload: updateEducation(details)
+			payload: api.updateEducation(details)
+		}
+	},
+	deleteEducation: (details) => {
+		return {
+			type: type.DELETE_EDUCATION,
+			payload: api.deleteEducation(details)
+		}
+	},
+	addSkill: (details) => {
+		return {
+			type: type.ADD_SKILL,
+			payload: api.addSkill(details)
+		}
+	},
+	updateSkill: (details) => {
+		return {
+			type: type.UPDATE_SKILL,
+			payload: api.updateSkill(details)
+		}
+	},
+	deleteSkill: (details) => {
+		return {
+			type: type.DELETE_SKILL,
+			payload: api.deleteSkill(details)
+		}
+	},
+	addExperience: (details) => {
+		return {
+			type: type.ADD_EXPERIENCE,
+			payload: api.addExperience(details)
+		}
+	},
+	updateExperience: (details) => {
+		return {
+			type: type.UPDATE_EXPERIENCE,
+			payload: api.updateExperience(details)
+		}
+	},
+	deleteExperience: (details) => {
+		return {
+			type: type.DELETE_EXPERIENCE,
+			payload: api.deleteExperience(details)
 		}
 	},
 	updateSearchString: (name) => {
