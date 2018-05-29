@@ -4,6 +4,8 @@ import Navbar from '../Navbar'
 import {getProfileDetails, updateEducation, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import SkillsFields from './SkillsFields'
+import ExperienceFields from './ExperienceFields'
 import Radium from 'radium'
 import '../../App.css'
 
@@ -17,6 +19,7 @@ function ProfileInput(props){
     display: 'flex',
     flexDirection : 'column',
     justifyContent: 'flex-start',
+    overflow: 'auto'
   }
   
   const title = {
@@ -65,6 +68,20 @@ function ProfileInput(props){
               return(
                 <div key={`education_${index}`} style={{marginBottom: 50}}>
                   <EducationFields school={school} update={props.updateEducation}/>
+                </div>
+              )
+            })}
+          </div>
+        }
+
+        {
+          props.selected == 'Experience' && 
+          <div>
+            <h1 style={title}>Experience</h1>
+            {props.user.education.map((school, index) => {
+              return(
+                <div key={`experience_${index}`} style={{marginBottom: 50}}>
+                  <ExperienceFields experience={props.user.experience}/>
                 </div>
               )
             })}
@@ -160,7 +177,6 @@ class Profile extends Component{
               onClick={() => this.props.updateEditSelected('Account')} 
               style={buttonStyle} 
               key='Account'
-
               > 
               Account 
               </button>
@@ -170,6 +186,13 @@ class Profile extends Component{
               key='Education'
               > 
               Education 
+              </button>
+              <button 
+              onClick={() => this.props.updateEditSelected('Experience')} 
+              style={buttonStyle} 
+              key='Experience'
+              > 
+              Experience 
               </button>
               <button 
               onClick={() => this.props.updateEditSelected('Skills')} 

@@ -1,45 +1,67 @@
 import React, { Component } from 'react'
 
-class TextField extends Component{
+class SkillsFields extends Component{
   constructor() {
     super()
     this.state = {
       skills: {
-        skill: '',
         lvl: '',
+        skill: '',
         id: ''
       }
     }
   }
   componentDidMount() {
-    let skills = this.props.value
-    this.setState({skills})
+    this.setState({skills: this.props.skills})
+    console.log(this.state.skills)
   }
-  updateValue(newValue) {
-    this.setState({skills: newValue})
+  updateSkill = (newValue) => {
+    this.setState({skills: {...this.state.skills, skill: newValue}})
   }
-  cancelEdit() {
-    this.setState({skills: this.props.value})
+  updateLevel = (newValue) => {
+    this.setState({skills: {...this.state.skills, lvl: newValue}})
   }
+  cancelEdit = () => {
+    this.setState({skills: this.props.skills})
+  }
+  saveEdit = () => {
+    this.props.update(this.state.skills)
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.skills !== this.props.skills) {
+      this.setState({skills: nextProps.skills})
+    }
+  }
+
   render(){
+
+    const title = {
+      fontFamily: 'Montserrat',
+      familyWeight: '200'
+    }
+
+    const spacer = {
+      marginTop: 10
+    }
+
     return (
       <div>
-        School Number
         <div>
           <label>
-            <div>
-              School<input type="text" value={this.state.skills.skill} onChange={(e) => this.updateValue(e.target.value)}/>
+            <div style={spacer}>
+              <span style={title}>Skill</span><input type="text" value={this.state.skills.skill} onChange={(e) => this.updateSkill(e.target.value)}/>
             </div>
-            <div>
-              Emphasis<input type="text" value={this.state.skills.lvl} onChange={(e) => this.updateValue(e.target.value)}/>
+            <div style={spacer}>
+              <span style={title}>Level</span><input type="text" value={this.state.skills.lvl} onChange={(e) => this.updateLevel(e.target.value)}/>
             </div>
           </label>
+          <button onClick={()=>this.props.delete()}>Delete</button>
         </div>
-        {this.state.education !== this.props.value
+        {this.state.skills !== this.props.skills
           ?
           <div>
-          <button onClick={()=>this.cancelEdit()} className='editPageButton'>Cancel</button>
-          <button className='editPageButton'>Save</button>
+          <button onClick={()=>this.cancelEdit()}>Cancel</button>
+          <button onClick={()=>this.saveEdit()}>Save</button>
           </div>
           :
           null
@@ -48,4 +70,4 @@ class TextField extends Component{
     )
   }
 }
-export default TextField
+export default SkillsFields
