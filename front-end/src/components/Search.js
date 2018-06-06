@@ -59,23 +59,25 @@ let Tiles = (props) => {
 	return (
 		<div style={tileWrapper}>
 			{
-				tiles.map(user => {
-						return(
-						<Link to={`/${user.username}`} style={tileStyle} key={user.username}>
-							<div key={user.username} style={tileStyle}>
-								<img src={user.imgurl} alt='avatar' style={imgStyle}/>
-								<div style={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: 10}}>
-									<div>
-										<p><span style={title}>Name:</span> {user.firstname + ' ' + user.lastname}</p>
-										<p><span style={title}>Username:</span> {user.username}</p> 						
-									</div>
-									<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-										<p>{user.description}</p>
+				tiles.map((user, index) => {
+					if(user.username){
+							return(
+							<Link to={`/${user.username}`} style={tileStyle} key={user.username ? user.username : index}>
+								<div key={user.username ? user.username : index} style={tileStyle}>
+									<img src={user.imgurl} alt='avatar' style={imgStyle}/>
+									<div style={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: 10}}>
+										<div>
+											<p><span style={title}>Name:</span> {user.firstname + ' ' + user.lastname}</p>
+											<p><span style={title}>Username:</span> {user.username}</p> 						
+										</div>
+										<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+											<p>{user.description}</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						</Link>
-					)
+							</Link>
+						)
+					}
 				})
 			}
 		</div>
@@ -88,11 +90,12 @@ class Search extends Component{
 
 	componentDidMount() {
 		this.props.getUsersTiles()
+		console.log('cookies', this.props.cookies)
 	}
 
 	render(){
 		
-		console.log(this.props.users)
+
 		const container = {
 			display: 'flex',
 			flexDirection: 'column',

@@ -3,21 +3,6 @@ import {Link} from 'react-router-dom'
 
 const Navbar = (props) => {
 
-  function Login(){ 
-    return (
-      <Link to='/login'>
-        <p>Login/Signup</p>
-       </Link>
-    )
-  }
-
-  function Logout(){ 
-    return (
-      <Link to='/logout'>
-        <p>Logout</p>
-       </Link>
-    )
-  }
 
   return (
     <nav className='nav-container'>
@@ -26,10 +11,27 @@ const Navbar = (props) => {
         <p>Logo/Home</p>
       </Link>
         { props.user &&
-          <Login />
+          <div style={{display: 'flex', justifyContent: 'space-around', width: 200}}>
+            <Link to='/Search'>
+              <p>Search</p>
+            </Link> 
+            <Link to='/edit'>
+              <p>Account</p>
+            </Link>           
+            <Link to='/Logout'>
+              <p>Logout</p>
+            </Link>
+          </div>
         }
         { !props.user &&
-          <Logout />
+          <div style={{display: 'flex', justifyContent: 'space-around', width: 200}}>
+            <Link to='/search'>
+              <p>Search</p>
+            </Link>
+            <Link to='/login'>
+              <p>Login/Signup</p>
+            </Link>
+          </div>
         }
       </div>
     </nav>
