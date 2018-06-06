@@ -124,6 +124,51 @@ function reducer(state = initialState, action){
 			deleteSkillState.user = deleteSkillUser
 			return deleteSkillState
 
+			case type.UPDATE_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.UPDATE_EXPERIENCE_FULFILLED:
+				console.log('UPDATE_EXPERIENCE_FULFILLED fired')
+				let experienceStateUpdate = Object.assign({}, state)
+				let experienceUserUpdate = Object.assign({}, experienceStateUpdate.user)
+				let experienceUpdate = Object.assign([], experienceUserUpdate.experience)
+				let experienceIndex = state.user.experience.findIndex(experience => {
+					return experience.id === action.payload.data[0].id
+				})
+				experienceUpdate[experienceIndex] = action.payload.data[0]
+				experienceUserUpdate.experience = experienceUpdate
+				experienceStateUpdate.user = experienceUserUpdate
+				return experienceStateUpdate
+
+			case type.ADD_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.ADD_EXPERIENCE_FULFILLED:
+				let addExperienceStateUpdate = Object.assign({}, state)
+				let addExperienceUserUpdate = Object.assign({}, addExperienceStateUpdate.user)
+				let addExperienceUpdate = Object.assign([], addExperienceUserUpdate.experience)
+				addExperienceUpdate.push(action.payload.data[0])
+				addExperienceUserUpdate.experience = addExperienceUpdate
+				addExperienceStateUpdate.user = addExperienceUserUpdate
+				return addExperienceStateUpdate
+
+			case type.DELETE_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.DELETE_EXPERIENCE_FULFILLED:
+				let deleteExperienceState = Object.assign({}, state)
+				let deleteExperienceUser = Object.assign({}, deleteExperienceState.user)
+				let deleteExperienceUpdate = Object.assign([], deleteExperienceUser.experience)
+				console.log('payload', action.payload)
+				let deleteExperienceIndex = deleteExperienceUpdate.findIndex(experience => {
+					return experience.id === action.payload.data.id
+				})
+				deleteExperienceUpdate.splice(deleteExperienceIndex, 1)
+				deleteExperienceUser.experience = deleteExperienceUpdate
+				deleteExperienceState.user = deleteExperienceUser
+				return deleteExperienceState
+
+
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
 
