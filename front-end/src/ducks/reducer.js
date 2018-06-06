@@ -124,6 +124,51 @@ function reducer(state = initialState, action){
 			deleteSkillState.user = deleteSkillUser
 			return deleteSkillState
 
+			case type.UPDATE_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.UPDATE_EXPERIENCE_FULFILLED:
+				console.log('UPDATE_EXPERIENCE_FULFILLED fired')
+				let experienceStateUpdate = Object.assign({}, state)
+				let experienceUserUpdate = Object.assign({}, experienceStateUpdate.user)
+				let experienceUpdate = Object.assign([], experienceUserUpdate.experience)
+				let experienceIndex = state.user.experience.findIndex(experience => {
+					return experience.id === action.payload.data[0].id
+				})
+				experienceUpdate[experienceIndex] = action.payload.data[0]
+				experienceUserUpdate.experience = experienceUpdate
+				experienceStateUpdate.user = experienceUserUpdate
+				return experienceStateUpdate
+
+			case type.ADD_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.ADD_EXPERIENCE_FULFILLED:
+				let addEducationStateUpdate = Object.assign({}, state)
+				let addEducationUserUpdate = Object.assign({}, addEducationStateUpdate.user)
+				let addEducationUpdate = Object.assign([], addEducationUserUpdate.experience)
+				addEducationUpdate.push(action.payload.data[0])
+				addEducationUserUpdate.experience = addEducationUpdate
+				addEducationStateUpdate.user = addEducationUserUpdate
+				return addEducationStateUpdate
+
+			case type.DELETE_EXPERIENCE:
+				return Object.assign({}, state)
+
+			case type.DELETE_EXPERIENCE_FULFILLED:
+				let deleteEducationState = Object.assign({}, state)
+				let deleteEducationUser = Object.assign({}, deleteEducationState.user)
+				let deleteEducationUpdate = Object.assign([], deleteEducationUser.experience)
+				console.log('payload', action.payload)
+				let deleteEducationIndex = deleteEducationUpdate.findIndex(experience => {
+					return experience.id === action.payload.data.id
+				})
+				deleteEducationUpdate.splice(deleteEducationIndex, 1)
+				deleteEducationUser.experience = deleteEducationUpdate
+				deleteEducationState.user = deleteEducationUser
+				return deleteEducationState
+
+
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
 
