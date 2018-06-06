@@ -60,7 +60,7 @@ class SkillsFields extends Component{
               <span style={title}>Level</span><input type="text" value={this.state.skills.lvl} onChange={(e) => this.updateLevel(e.target.value)}/>
             </div>
           </label>
-          <button onClick={()=>this.props.delete()}>Delete</button>
+          <button onClick={()=>this.deleteSkill()}>Delete</button>
         </div>
         {this.state.skills !== this.props.skills
           ?
