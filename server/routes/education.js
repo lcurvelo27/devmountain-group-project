@@ -46,7 +46,6 @@ module.exports = function(app) {
       id: req.body.id
     })
       .then(response => {
-        console.log(req.body.authid)
         let update = {
           id: req.body.id,
           response: response
