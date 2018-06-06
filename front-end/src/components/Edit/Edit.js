@@ -6,6 +6,7 @@ import TextField from './TextField'
 import EducationFields from './EducationFields'
 import SkillsFields from './SkillsFields'
 import AddEducation from './AddEducation'
+import AddExperience from './AddExperience'
 import AddSkill from './AddSkill'
 import ExperienceFields from './ExperienceFields'
 import Radium from 'radium'
@@ -88,6 +89,7 @@ function ProfileInput(props){
                 </div>
               )
             })}
+            <AddExperience/>
           </div>
         }
 
