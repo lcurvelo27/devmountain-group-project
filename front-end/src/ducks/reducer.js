@@ -144,7 +144,6 @@ function reducer(state = initialState, action){
 				return Object.assign({}, state)
 
 			case type.ADD_EXPERIENCE_FULFILLED:
-<<<<<<< HEAD
 				let addExperienceStateUpdate = Object.assign({}, state)
 				let addExperienceUserUpdate = Object.assign({}, addExperienceStateUpdate.user)
 				let addExperienceUpdate = Object.assign([], addExperienceUserUpdate.experience)
@@ -152,21 +151,11 @@ function reducer(state = initialState, action){
 				addExperienceUserUpdate.experience = addExperienceUpdate
 				addExperienceStateUpdate.user = addExperienceUserUpdate
 				return addExperienceStateUpdate
-=======
-				let addEducationStateUpdate = Object.assign({}, state)
-				let addEducationUserUpdate = Object.assign({}, addEducationStateUpdate.user)
-				let addEducationUpdate = Object.assign([], addEducationUserUpdate.experience)
-				addEducationUpdate.push(action.payload.data[0])
-				addEducationUserUpdate.experience = addEducationUpdate
-				addEducationStateUpdate.user = addEducationUserUpdate
-				return addEducationStateUpdate
->>>>>>> e6252b7537a55bf1ddb82f2aec0ea9cb7c1956ec
 
 			case type.DELETE_EXPERIENCE:
 				return Object.assign({}, state)
 
 			case type.DELETE_EXPERIENCE_FULFILLED:
-<<<<<<< HEAD
 				let deleteExperienceState = Object.assign({}, state)
 				let deleteExperienceUser = Object.assign({}, deleteExperienceState.user)
 				let deleteExperienceUpdate = Object.assign([], deleteExperienceUser.experience)
@@ -178,19 +167,6 @@ function reducer(state = initialState, action){
 				deleteExperienceUser.experience = deleteExperienceUpdate
 				deleteExperienceState.user = deleteExperienceUser
 				return deleteExperienceState
-=======
-				let deleteEducationState = Object.assign({}, state)
-				let deleteEducationUser = Object.assign({}, deleteEducationState.user)
-				let deleteEducationUpdate = Object.assign([], deleteEducationUser.experience)
-				console.log('payload', action.payload)
-				let deleteEducationIndex = deleteEducationUpdate.findIndex(experience => {
-					return experience.id === action.payload.data.id
-				})
-				deleteEducationUpdate.splice(deleteEducationIndex, 1)
-				deleteEducationUser.experience = deleteEducationUpdate
-				deleteEducationState.user = deleteEducationUser
-				return deleteEducationState
->>>>>>> e6252b7537a55bf1ddb82f2aec0ea9cb7c1956ec
 
 
 		case type.UPDATE_SEARCH_STRING:
