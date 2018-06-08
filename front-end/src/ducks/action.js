@@ -16,10 +16,10 @@ module.exports = {
 			payload: api.getUsers()
 		}
 	},
-	getProfileDetails: (username) => {
+	getProfileDetails: (user) => {
 		return {
 			type: type.GET_PROFILE_DETAILS,
-			payload: api.getProfile(username)
+			payload: api.getProfile(user)
 		}
 	},
 	setTheme: (type) => {
@@ -55,6 +55,12 @@ module.exports = {
 		return {
 			type:type.AUTH,
 			payload: api.auth()
+		}
+	},
+	getUserEdit: () => {
+		return {
+			type: type.GET_USER_EDIT,
+			payload: api.getUserEdit()
 		}
 	}
 }

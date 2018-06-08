@@ -1,2 +1,1 @@
-SELECT * FROM users 
-WHERE authID = $1
+SELECT * FROM USERS WHERE authid = $1

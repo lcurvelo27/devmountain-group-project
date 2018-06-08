@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {auth, updateEducation, updateEditSelected} from '../../ducks/action'
+import {getUserEdit, updateEducation, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
 import SkillsFields from './SkillsFields'
@@ -11,7 +11,6 @@ import '../../App.css'
 
 
 function ProfileInput(props){
-  console.log('cookies', props.cookies)
 
   const formContainer = {
     width: '35vw',
@@ -64,13 +63,18 @@ function ProfileInput(props){
           props.selected == 'Education' && 
           <div>
             <h1 style={title}>Education</h1>
-            {props.user.education.map((school, index) => {
+            {props.user.education ? props.user.education.map((school, index) => {
               return(
                 <div key={`education_${index}`} style={{marginBottom: 50}}>
                   <EducationFields school={school} update={props.updateEducation}/>
                 </div>
               )
-            })}
+            }) 
+            :
+            <div style={{marginBottom: 50}}>
+              <EducationFields update={props.updateEducation}/>
+            </div>
+            }
           </div>
         }
 
@@ -110,7 +114,8 @@ function ProfileInput(props){
 
 class Profile extends Component{
   componentDidMount() {
-    this.props.auth(this.props.match.params.username)
+    console.log(this.props.user)
+    this.props.getUserEdit()
 
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -223,4 +228,4 @@ const mapStateToProps = state => {
     editSelected: state.editSelected
   }
 }
-export default connect(mapStateToProps, {auth, updateEducation, updateEditSelected})(Profile)
+export default connect(mapStateToProps, {getUserEdit, updateEducation, updateEditSelected})(Profile)

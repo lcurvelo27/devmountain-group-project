@@ -69,6 +69,12 @@ function reducer(state = initialState, action){
 		case type.AUTH_REJECTED:
 			return Object.assign({}, state, {loading: false})
 		
+		case type.GET_USER_EDIT_PENDING:
+			return Object.assign({}, state, {loading: true})
+
+		case type.GET_USER_EDIT_FULFILLED:
+			return Object.assign({}, state, {loading: false, user: action.payload.data[0]})
+		
 		default:
 			return state
 	}

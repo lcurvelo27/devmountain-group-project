@@ -11,7 +11,10 @@ module.exports = {
 	updateEducation(details) {
 		return axios.put(`http://localhost:3005/api/users/education`, details)
 	},
-	auth() {
+	auth(id) {
 		return axios.get('http://localhost:3005/auth/me', {withCredentials: true})
+	},
+	getUserEdit: () => {
+		return axios.get('http://localhost:3005/auth/userEdit', {withCredentials: true})
 	}
 }

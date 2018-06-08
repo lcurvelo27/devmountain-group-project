@@ -90,7 +90,6 @@ module.exports = function(app) {
         function(req, res){
           app.get('db').users.get_user_session(req.user).then(
             response => {
-              console.log(response)
               if(response.length > 0){
                 res.status(200).send(response)
               }
@@ -98,6 +97,15 @@ module.exports = function(app) {
                 res.status(401).send('unauthorized')
               }
         })})
+
+        router.get('/userEdit', (req, res) => {
+          console.log('this is userEDit', req.user)
+          app.get('db').users.get_user_edit(req.user)
+            .then(response => {
+              console.log(response)
+              return res.status(200).send('test')
+            })
+        })
 
     return router
   }

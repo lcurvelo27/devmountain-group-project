@@ -17,6 +17,6 @@ export default(
 		<Route path='/search' component={Search} />
 		<Route path='/profile/:username' component={Profile} />
 		<Route path='/login' component={Login} exact/>
-		<PrivateRoute path='/edit/:username' component={Edit}/>
+		<PrivateRoute path='/edit' component={Edit}/>
 	</Switch>
 )
