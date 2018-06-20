@@ -28,9 +28,9 @@ const Navbar = (props) => {
             <Link to='/search'>
               <p>Search</p>
             </Link>
-            <Link to='/login'>
+            <a href='http://localhost:3005/auth/login'>
               <p>Login/Signup</p>
-            </Link>
+            </a>
           </div>
         }
       </div>
