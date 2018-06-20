@@ -23,13 +23,15 @@ module.exports = function(app) {
       })
   })
 
-  router.put(`/:username`, (res, req) => {
+  router.put(`/`, (req, res) => {
+    console.log(req.body)
     app.get('db').users.update_user({
-      username: req.params.username,
+      username: req.body.username,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       description: req.body.description,
-      imgurl: req.body.imgurl
+      imgurl: req.body.imgurl,
+      authid: 'abc123'
     })
       .then(response => {
         return res.status(200).send(response)

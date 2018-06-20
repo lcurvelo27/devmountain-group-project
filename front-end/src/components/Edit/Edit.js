@@ -4,6 +4,7 @@ import Navbar from '../Navbar'
 import {getProfileDetails, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import UserFields from './UserFields'
 import SkillsFields from './SkillsFields'
 import AddEducation from './AddEducation'
 import AddExperience from './AddExperience'
@@ -53,13 +54,7 @@ function ProfileInput(props){
         props.selected == 'Account' &&
         <div style={{height: '100%'}}>
           <h1 style={title}>Account</h1>
-          <TextField title="Image URL" value={props.user.imgurl}/>
-          <TextField title="Username" value={props.user.username}/>
-          <h1 style={title}>Name</h1>
-          <TextField title="First" value={props.user.firstname}/>
-          <TextField title="Last" value={props.user.lastname}/>
-          <h1 style={title}>Description</h1>
-          <TextField title="Bio" value={props.user.description}/>
+          <UserFields user={props.user}/>
         </div>
         }
 

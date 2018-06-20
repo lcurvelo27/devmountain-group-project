@@ -168,6 +168,21 @@ function reducer(state = initialState, action){
 				deleteExperienceState.user = deleteExperienceUser
 				return deleteExperienceState
 
+			case type.UPDATE_USER:
+				return Object.assign({}, state)
+
+			case type.UPDATE_USER_FULFILLED:
+				let updateUserState = Object.assign({}, state)
+				let updateUser = Object.assign({}, updateUserState.user)
+				let update = action.payload.data[0]
+				updateUser.firstname = update.firstname
+				updateUser.lastname = update.lastname
+				updateUser.description = update.description
+				updateUser.username = update.username
+				updateUser.imgurl = update.imgurl
+				updateUserState.user = updateUser
+				return updateUserState
+
 
 		case type.UPDATE_SEARCH_STRING:
 			return Object.assign({}, state, {searchString: action.payload})
