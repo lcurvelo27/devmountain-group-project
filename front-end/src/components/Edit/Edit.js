@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {getProfileDetails, updateEditSelected} from '../../ducks/action'
+import {getUserEdit, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
 import UserFields from './UserFields'
@@ -15,7 +15,6 @@ import '../../App.css'
 
 
 function ProfileInput(props){
-  console.log(props)
 
   const formContainer = {
     width: '35vw',
@@ -110,7 +109,9 @@ function ProfileInput(props){
 
 class Edit extends Component{
   componentDidMount() {
-    this.props.getProfileDetails(this.props.match.params.username)
+    console.log(this.props.user)
+    this.props.getUserEdit()
+
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user != nextProps.user || this.props.editSelected != nextProps.editSelected) {
@@ -196,7 +197,7 @@ class Edit extends Component{
               Skills
               </button>
             </div>
-            <ProfileInput user={this.props.user} selected={this.props.editSelected}/>
+            <ProfileInput user={this.props.user} selected={this.props.editSelected} />
           </div>
           :
           'Loading...'
@@ -216,4 +217,5 @@ const mapStateToProps = state => {
     editSelected: state.editSelected
   }
 }
-export default connect(mapStateToProps, {getProfileDetails, updateEditSelected})(Edit)
+
+export default connect(mapStateToProps, {getUserEdit, updateEditSelected})(Edit)

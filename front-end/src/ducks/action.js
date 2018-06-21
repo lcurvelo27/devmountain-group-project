@@ -102,5 +102,17 @@ module.exports = {
 			type: type.UPDATE_EDIT_SELECTED,
 			payload: option
 		}
+	},
+	auth: () => {
+		return {
+			type:type.AUTH,
+			payload: api.auth()
+		}
+	},
+	getUserEdit: () => {
+		return {
+			type: type.GET_USER_EDIT,
+			payload: api.getUserEdit()
+		}
 	}
 }

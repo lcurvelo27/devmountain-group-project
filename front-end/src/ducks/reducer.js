@@ -11,7 +11,8 @@ const initialState = {
 	color: null,
 	theme: defaultTheme,
 	searchString: '',
-	editSelected: ''
+	editSelected: '',
+	isAuthenticated: false
 }
 
 function reducer(state = initialState, action){
@@ -190,7 +191,21 @@ function reducer(state = initialState, action){
 		case type.UPDATE_EDIT_SELECTED:
 			return Object.assign({}, state, {editSelected: action.payload})
 
+		case type.AUTH_FULFILLED:
+			return Object.assign({}, state, {loading: false, user: action.payload.data[0], isAuthenticated: true})
 
+		case type.AUTH_PENDING:
+			return Object.assign({}, state, {loading: true})
+
+		case type.AUTH_REJECTED:
+			return Object.assign({}, state, {loading: false})
+		
+		case type.GET_USER_EDIT_PENDING:
+			return Object.assign({}, state, {loading: true})
+
+		case type.GET_USER_EDIT_FULFILLED:
+			return Object.assign({}, state, {loading: false, user: action.payload.data[0]})
+		
 		default:
 			return state
 	}

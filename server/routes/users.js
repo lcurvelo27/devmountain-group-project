@@ -18,7 +18,7 @@ module.exports = function(app) {
         return res.status(200).send(response)
       })
       .catch(err => {
-        console.log(err)
+        console.log('this is the error', err)
         res.status(500).send('there was an error')
       })
   })
@@ -41,6 +41,7 @@ module.exports = function(app) {
         res.status(500).send('there was an error')
       })
   })
+
 
   return router
 }

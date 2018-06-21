@@ -5,6 +5,11 @@ module.exports = {
 	getUsers: () => {
 		return axios.get('http://localhost:3005/api/search/tiles').then(response => response.data)
 	},
+	auth(id) {
+		return axios.get('http://localhost:3005/auth/me', {withCredentials: true})
+	},
+	getUserEdit: () => {
+		return axios.get('http://localhost:3005/auth/userEdit', {withCredentials: true})
 	getProfile: (username) => {
     return axios.get(`http://localhost:3005/api/users/${username}`)
   },

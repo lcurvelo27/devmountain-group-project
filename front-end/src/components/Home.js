@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import {style} from './homeStyle'
 import resume from './images/default-theme.png'
 import {Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive'
+import {auth} from '../ducks/action'
 import '../App.css'
 
 
-const FullSizeHome = () => {
+const FullSizeHome = (props) => {
   return(
       <div>
         <div style={style.centerPieceFullSize}>
@@ -26,10 +27,10 @@ const FullSizeHome = () => {
         </div>
         <div style = {style.homeFunctionsFullSize}>
           <div style= {style.buttonsAlign}>
-            <ButtonWindow button='Search'>
+            <ButtonWindow button='Search' link='http://localhost:3000/#/search'>
             <p>Search a potential employee.</p>
             </ButtonWindow>
-            <ButtonWindow button='Sign in'>
+            <ButtonWindow button='Sign in' link='http://localhost:3005/auth/login'>
             <p>Is this your first time visiting? Create a profile!</p>
             </ButtonWindow>
           </div>
@@ -72,36 +73,38 @@ const ButtonWindow = (props) => {
           <p style={{'fontFamily': 'News Cycle', fontSize: '30px'}}>{props.children}</p>
         </div>
         <div>
-        <Link to={`/${props.button}`}>
+        <a href={props.link}>
             <button className='button'>
               {props.button}
             </button>
-          </Link>
+          </a>
         </div>
       </div>
 
     )
 }
 
-const Home = (props) => {
-  
-  return (
-    <div>
-      <Navbar/>
-      <MediaQuery query='(min-width: 1000px)'>
-        <FullSizeHome />
-      </MediaQuery>
-      <MediaQuery query='(max-width: 1000px)'>
-        <MobileSizeHome />
-      </MediaQuery>
-    </div>
-  )
-}
+class Home extends Component{
+  componentDidMount(){
+    this.props.auth()
+  }
+  render(){
+    return (
+      <div>
+        <Navbar/>
+        <MediaQuery query='(min-width: 1000px)'>
+          <FullSizeHome />
+        </MediaQuery>
+        <MediaQuery query='(max-width: 1000px)'>
+          <MobileSizeHome />
+        </MediaQuery>
+      </div>
+    )
+}}
 
 function mapStateToProps(state) {
   return {
-    // add correct props here
-    state: state
+    isAuthenticated: state.isAuthenticated 
   }
 }
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, {auth})(Home)

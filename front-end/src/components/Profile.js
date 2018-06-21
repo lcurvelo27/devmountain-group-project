@@ -8,6 +8,7 @@ import MediaQuery from 'react-responsive'
 import DefaultProfileMobile from './Themes/DefaultProfileMobile'
 
 const FullScreenCv = (props) => {
+  console.log(props.user)
   return(
       <div>
               {
@@ -15,7 +16,7 @@ const FullScreenCv = (props) => {
           ?
           <p>Loading...</p>
           :
-            props.user
+            props.user && props.user.skills
             ?
             <div>
               <div>
@@ -40,7 +41,7 @@ const MobileSizeScreenCV = (props) => {
             ?
             <p>Loading...</p>
             :
-              props.user
+              props.user && props.user.skills
               ?
               <div>
                 <div>
@@ -60,6 +61,7 @@ const MobileSizeScreenCV = (props) => {
 class Profile extends Component{
 
   componentDidMount() {
+    console.log(this.props.user)
     this.props.getProfileDetails(this.props.match.params.username)
   }
 
