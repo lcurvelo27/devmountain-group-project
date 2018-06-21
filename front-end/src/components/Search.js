@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 
 
 let Tiles = (props) => {
-		
+
 		const tileWrapper = {
 			height: '100vh',
 			width: '50vw',
@@ -32,7 +32,7 @@ let Tiles = (props) => {
 			borderRadius: '8px',
 			color: 'black'
 		}
-		
+
 		const imgStyle = {
 			height: 50,
 			borderRadius: '100%'
@@ -48,10 +48,10 @@ let Tiles = (props) => {
 			searchString = props.searchString.trim().toLowerCase();
 		if(searchString.length > 0) {
 			tiles = tiles.filter(user => {
-				
+
 				return (
-				user.firstname && user.firstname.toLowerCase().match(searchString) || 
-				user.lastname && user.lastname.toLowerCase().match(searchString) || 
+				user.firstname && user.firstname.toLowerCase().match(searchString) ||
+				user.lastname && user.lastname.toLowerCase().match(searchString) ||
 				user.description && user.description.toLowerCase().match(searchString)
 				)
 			})
@@ -63,13 +63,13 @@ let Tiles = (props) => {
 				tiles.map((user, index) => {
 					if(user.username){
 							return(
-							<Link to={`/profile/${user.username}`} style={tileStyle} key={user.username ? user.username : index}>
+							<Link to={`/${user.username}`} style={tileStyle} key={user.username ? user.username : index}>
 								<div key={user.username ? user.username : index} style={tileStyle}>
 									<img src={user.imgurl} alt='avatar' style={imgStyle}/>
 									<div style={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: 10}}>
 										<div>
 											<p><span style={title}>Name:</span> {user.firstname + ' ' + user.lastname}</p>
-											<p><span style={title}>Username:</span> {user.username}</p> 						
+											<p><span style={title}>Username:</span> {user.username}</p>
 										</div>
 										<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 											<p>{user.description}</p>
@@ -95,7 +95,7 @@ class Search extends Component{
 	}
 
 	render(){
-		
+
 
 		const container = {
 			display: 'flex',
@@ -152,6 +152,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {getUsersTiles, updateSearchString})(Search)
-
-
-
