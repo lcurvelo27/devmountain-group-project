@@ -3,13 +3,3 @@ INSERT INTO users
 VALUES 
 (${authid});
 
-INSERT INTO education_table (authid)
-VALUES (${authid});
-
-INSERT INTO skills_table (authid)
-VALUES (${authid});
-
-INSERT INTO experience_table (authid)
-VALUES (${authid});
-
-
