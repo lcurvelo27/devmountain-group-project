@@ -61,7 +61,7 @@ function ProfileInput(props){
           props.selected == 'Education' &&
           <div>
             <h1 style={title}>Education</h1>
-            {props.user.education ? props.user.education.map((school, index) => {
+            {props.user.education.map((school, index) => {
               return(
                 <div key={`education_${index}`} style={{marginBottom: 50}}>
                   <EducationFields school={school}/>
