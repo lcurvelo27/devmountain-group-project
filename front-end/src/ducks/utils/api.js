@@ -10,6 +10,7 @@ module.exports = {
 	},
 	getUserEdit: () => {
 		return axios.get('http://localhost:3005/auth/userEdit', {withCredentials: true})
+	},
 	getProfile: (username) => {
     return axios.get(`http://localhost:3005/api/users/${username}`)
   },
