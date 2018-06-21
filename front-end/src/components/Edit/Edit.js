@@ -197,7 +197,7 @@ class Edit extends Component{
               Skills
               </button>
             </div>
-            <ProfileInput user={this.props.user} selected={this.props.editSelected} cookies={this.props.cookies}/>
+            <ProfileInput user={this.props.user} selected={this.props.editSelected} />
           </div>
           :
           'Loading...'
