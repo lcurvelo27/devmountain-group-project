@@ -17,7 +17,7 @@ module.exports = {
 	getProfileDetails: (username) => {
 		return {
 			type: type.GET_PROFILE_DETAILS,
-			payload: api.getProfile(user)
+			payload: api.getProfile(username)
 		}
 	},
 	updateUser: (user) => {
