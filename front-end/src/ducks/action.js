@@ -14,7 +14,7 @@ module.exports = {
 			payload: api.getUsers()
 		}
 	},
-	getProfileDetails: (user) => {
+	getProfileDetails: (username) => {
 		return {
 			type: type.GET_PROFILE_DETAILS,
 			payload: api.getProfile(user)
