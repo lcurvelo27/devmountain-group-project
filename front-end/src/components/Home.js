@@ -5,7 +5,7 @@ import {style} from './homeStyle'
 import resume from './images/default-theme.png'
 import {Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive'
-import {auth, updateEducation, updateEditSelected} from '../ducks/action'
+import {auth} from '../ducks/action'
 import '../App.css'
 
 
