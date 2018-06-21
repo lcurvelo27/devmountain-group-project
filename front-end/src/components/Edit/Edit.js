@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar'
-import {getUserEdit, updateEducation, updateEditSelected} from '../../ducks/action'
+import {getUserEdit, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import UserFields from './UserFields'
 import SkillsFields from './SkillsFields'
+import AddEducation from './AddEducation'
+import AddExperience from './AddExperience'
+import AddSkill from './AddSkill'
 import ExperienceFields from './ExperienceFields'
 import Radium from 'radium'
 import '../../App.css'
@@ -20,7 +24,7 @@ function ProfileInput(props){
     justifyContent: 'flex-start',
     overflow: 'auto'
   }
-  
+
   const title = {
     fontSize: 25,
     fontFamily: 'Montserrat',
@@ -39,104 +43,89 @@ function ProfileInput(props){
   return(
     <div style={formContainer}>
       {
-        !props.selected && 
+        !props.selected &&
         <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignContent: 'flex-end', textAlign: 'center'}}>
           <h1 style={title}>Hi, {props.user.firstname}. please, choose an option on the navigation bar at your left.</h1>
         </div>
       }
 
-      { 
-        props.selected == 'Account' &&  
+      {
+        props.selected == 'Account' &&
         <div style={{height: '100%'}}>
           <h1 style={title}>Account</h1>
-          <TextField title="Image URL" value={props.user.imgurl}/>
-          <TextField title="Username" value={props.user.username}/>
-          <h1 style={title}>Name</h1>
-          <TextField title="First" value={props.user.firstname}/>
-          <TextField title="Last" value={props.user.lastname}/>
-          <h1 style={title}>Description</h1>
-          <TextField title="Bio" value={props.user.description}/>
+          <UserFields user={props.user}/>
         </div>
         }
 
         {
-          props.selected == 'Education' && 
+          props.selected == 'Education' &&
           <div>
             <h1 style={title}>Education</h1>
             {props.user.education ? props.user.education.map((school, index) => {
               return(
                 <div key={`education_${index}`} style={{marginBottom: 50}}>
-                  <EducationFields school={school} update={props.updateEducation}/>
-                </div>
-              )
-            }) 
-            :
-            <div style={{marginBottom: 50}}>
-              <EducationFields update={props.updateEducation}/>
-            </div>
-            }
-          </div>
-        }
-
-        {
-          props.selected == 'Experience' && 
-          <div>
-            <h1 style={title}>Experience</h1>
-            {props.user.education.map((school, index) => {
-              return(
-                <div key={`experience_${index}`} style={{marginBottom: 50}}>
-                  <ExperienceFields experience={props.user.experience}/>
+                  <EducationFields school={school}/>
                 </div>
               )
             })}
+            <AddEducation/>
           </div>
         }
 
         {
-          props.selected == 'Skills' && 
+          props.selected == 'Experience' &&
+          <div>
+            <h1 style={title}>Experience</h1>
+            {props.user.experience.map((job, index) => {
+              return(
+                <div key={`experience_${index}`} style={{marginBottom: 50}}>
+                  <ExperienceFields experience={job}/>
+                </div>
+              )
+            })}
+            <AddExperience/>
+          </div>
+        }
+
+        {
+          props.selected == 'Skills' &&
           <div>
             <h1 style={title}>Skills</h1>
             {props.user.skills.map((skill, index) => {
               return(
                 <div key={`skills_${index}`}>
-                  <TextField title="Skill" value={skill.skill}/>
-                  <TextField title="Level" value={skill.lvl}/>
+                  <SkillsFields title="Skill" skills={skill}/>
                 </div>
               )
             })}
+            <AddSkill/>
           </div>
-        }          
+        }
     </div>
   )
 }
 
 
 
-class Profile extends Component{
+class Edit extends Component{
   componentDidMount() {
     console.log(this.props.user)
     this.props.getUserEdit()
 
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate fired')
-
     if (this.props.user != nextProps.user || this.props.editSelected != nextProps.editSelected) {
-      console.log('think we should update, yeah do that')
       return true
-    } else
-      console.log('don\'t update')
-    return false
+    } else return false
   }
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps fired')
-    if(nextProps.user){
-
+    if(this.props.match.params.username !== nextProps.match.params.username) {
+      this.props.getProfileDetails(nextProps.match.params.username)
     }
   }
 
 	render(){
-    
+
     const wrapper = {
       display: 'flex',
       flexDirection: 'column',
@@ -179,33 +168,33 @@ class Profile extends Component{
           ?
           <div style={box}>
             <div style={boxNav}>
-              <button 
-              onClick={() => this.props.updateEditSelected('Account')} 
-              style={buttonStyle} 
-              key='Account' 
-              > 
-              Account 
+              <button
+              onClick={() => this.props.updateEditSelected('Account')}
+              style={buttonStyle}
+              key='Account'
+              >
+              Account
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Education')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Education')}
+              style={buttonStyle}
               key='Education'
-              > 
-              Education 
+              >
+              Education
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Experience')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Experience')}
+              style={buttonStyle}
               key='Experience'
-              > 
-              Experience 
+              >
+              Experience
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Skills')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Skills')}
+              style={buttonStyle}
               key='Skills'
-              > 
-              Skills 
+              >
+              Skills
               </button>
             </div>
             <ProfileInput user={this.props.user} selected={this.props.editSelected} cookies={this.props.cookies}/>
@@ -219,7 +208,7 @@ class Profile extends Component{
 }
 
 
-Profile = Radium(Profile) 
+Edit = Radium(Edit)
 
 const mapStateToProps = state => {
 	return {
@@ -228,4 +217,5 @@ const mapStateToProps = state => {
     editSelected: state.editSelected
   }
 }
-export default connect(mapStateToProps, {getUserEdit, updateEducation, updateEditSelected})(Profile)
+
+export default connect(mapStateToProps, {getUserEdit, updateEditSelected})(Edit)

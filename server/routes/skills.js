@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   router.post('/', (req, res) => {
     app.get('db').skills.create_skill({
-      authid: req.body.authid,
+      authid: 'abc123',
       skill: req.body.skill,
       lvl: req.body.lvl
     })
@@ -21,7 +21,7 @@ module.exports = function(app) {
     app.get('db').skills.update_skill({
       skill: req.body.skill,
       lvl: req.body.lvl,
-      authid: req.body.authid,
+      authid: 'abc123',
       id: req.body.id
     })
     .then(response => {
@@ -34,9 +34,13 @@ module.exports = function(app) {
   })
 
   router.delete('/', (req, res) => {
-    app.get('db').skills.delete_skill({authid: req.body.authid, id: req.body.id})
+    app.get('db').skills.delete_skill({authid: 'abc123', id: req.body.id})
       .then(response => {
-        return res.status(200).send(response)
+        let update = {
+          id: req.body.id,
+          response: response
+        }
+        return res.status(200).send(update)
       })
       .catch(err => {
         console.log(error)

@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   router.post('/', (req, res) => {
     app.get('db').experience.create_experience({
-      authid: req.body.authid,
+      authid: 'abc123',
       title: req.body.title,
       company: req.body.company,
       location: req.body.location,
@@ -23,7 +23,7 @@ module.exports = function(app) {
 
   router.put('/', (req, res) => {
     app.get('db').experience.update_experience({
-      authid: req.body.authid,
+      authid: 'abc123',
       title: req.body.title,
       company: req.body.company,
       location: req.body.location,
@@ -42,12 +42,17 @@ module.exports = function(app) {
   })
 
   router.delete('/', (req, res) => {
+    console.log('deleteexperience was hit!')
     app.get('db').experience.delete_experience({
-      authid: req.body.authid,
+      authid: 'abc123',
       id: req.body.id
     })
       .then(response => {
-        return res.status(200).send(response)
+        let update = {
+          id: req.body.id,
+          response: response
+        }
+        return res.status(200).send(update)
       })
       .catch(err => {
         console.log(error)

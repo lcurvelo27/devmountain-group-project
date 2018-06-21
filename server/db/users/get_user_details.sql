@@ -1,21 +1,43 @@
-SELECT users.username, users.firstname, users.lastname, users.description, users.imgurl, users.theme, skills_json.skills, education_json.education, experience_json.experience
-FROM users
-  INNER JOIN (
-      SELECT authid,
-              json_agg((SELECT x FROM(SELECT id, skill, lvl) x)) as skills
-          FROM skills_table
-          GROUP BY authid
-  ) skills_json ON users.authid = skills_json.authid
-    INNER JOIN (
-        SELECT authid,
-            json_agg((SELECT x FROM (SELECT id, school, emphasis, start_date, end_date) x)) AS education
-        FROM   education_table
-        GROUP BY authid
-    ) education_json ON users.authid = education_json.authid
-      INNER JOIN (
-        SELECT authid,
-            json_agg((SELECT x FROM (SELECT id, title, company, description, location, start_date, end_date) x)) AS experience
-        FROM experience_table
-        GROUP BY authid
-      ) experience_json ON users.authid = experience_json.authid
-WHERE users.username = ${username}
+SELECT
+  U.username,
+  U.firstname,
+  U.lastname,
+  U.description,
+  U.imgurl,
+  U.theme,
+
+  COALESCE(
+    json_agg(S) FILTER (
+      WHERE
+        S.authid IS NOT NULL
+    ),
+    '[]'
+  ) AS skills,
+  COALESCE(
+    json_agg(E) FILTER (
+      WHERE
+        E.authid IS NOT NULL
+    ),
+    '[]'
+  ) AS education,
+  COALESCE(
+    json_agg(X) FILTER (
+      WHERE
+        X.authid IS NOT NULL
+    ),
+    '[]'
+  ) AS experience
+FROM
+  users U
+  LEFT JOIN skills_table S ON U.authid = S.authid
+  LEFT JOIN education_table E ON U.authid = E.authid
+  LEFT JOIN experience_table X ON U.authid = X.authid
+WHERE U.username = ${username}
+
+GROUP BY
+  U.username,
+  U.firstname,
+  U.lastname,
+  U.description,
+  U.imgurl,
+  U.theme
