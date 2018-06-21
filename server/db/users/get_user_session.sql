@@ -1,1 +1,1 @@
-SELECT * FROM USERS WHERE authid = $1
+SELECT * FROM USERS WHERE authid = ${authid}

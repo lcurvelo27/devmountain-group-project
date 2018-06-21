@@ -1,15 +1,15 @@
 INSERT INTO users
 (authID)
 VALUES 
-($1);
+(${authid});
 
 INSERT INTO education_table (authid)
-VALUES ($1);
+VALUES (${authid});
 
 INSERT INTO skills_table (authid)
-VALUES ($1);
+VALUES (${authid});
 
 INSERT INTO experience_table (authid)
-VALUES ($1);
+VALUES (${authid});
 
 

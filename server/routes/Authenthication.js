@@ -21,12 +21,12 @@ module.exports = function(app) {
         callbackURL: process.env.AUTH0_CALLBACK_URL
       },
       (accessToken, refreshToken, extraParams, profile, done) => {
-        app.get('db').users.get_user_session(profile.id)
+        app.get('db').users.get_user_session({authid: profile.id})
           .then(response => {
             console.log(response)
             if(response.length == 0){
               console.log('its created')
-              app.get('db').users.create_user(profile.id)
+              app.get('db').users.create_user({authid: profile.id})
                 .then(response => {
                   done (null, profile.id)
                 })
