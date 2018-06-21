@@ -20,6 +20,12 @@ module.exports = {
 			payload: api.getProfile(username)
 		}
 	},
+	updateUser: (user) => {
+		return {
+			type:type.UPDATE_USER,
+			payload: api.updateUser(user)
+		}
+	},
 	setTheme: (type) => {
 		return {
 			type: type

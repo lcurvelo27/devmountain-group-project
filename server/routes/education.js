@@ -11,8 +11,6 @@ module.exports = function(app) {
       end_date: req.body.end_date
     })
       .then(response => {
-        console.log('inputs to sql query', req.body.start_date, req.body.end_date)
-        console.log('outputs from response',response[0].start_date, response[0].end_date)
         return res.status(200).send(response)
       })
       .catch(err => {
@@ -46,7 +44,6 @@ module.exports = function(app) {
       id: req.body.id
     })
       .then(response => {
-        console.log(req.body.authid)
         let update = {
           id: req.body.id,
           response: response

@@ -4,8 +4,10 @@ import Navbar from '../Navbar'
 import {getProfileDetails, updateEditSelected} from '../../ducks/action'
 import TextField from './TextField'
 import EducationFields from './EducationFields'
+import UserFields from './UserFields'
 import SkillsFields from './SkillsFields'
 import AddEducation from './AddEducation'
+import AddExperience from './AddExperience'
 import AddSkill from './AddSkill'
 import ExperienceFields from './ExperienceFields'
 import Radium from 'radium'
@@ -52,13 +54,7 @@ function ProfileInput(props){
         props.selected == 'Account' &&
         <div style={{height: '100%'}}>
           <h1 style={title}>Account</h1>
-          <TextField title="Image URL" value={props.user.imgurl}/>
-          <TextField title="Username" value={props.user.username}/>
-          <h1 style={title}>Name</h1>
-          <TextField title="First" value={props.user.firstname}/>
-          <TextField title="Last" value={props.user.lastname}/>
-          <h1 style={title}>Description</h1>
-          <TextField title="Bio" value={props.user.description}/>
+          <UserFields user={props.user}/>
         </div>
         }
 
@@ -78,21 +74,22 @@ function ProfileInput(props){
         }
 
         {
-          props.selected == 'Experience' && 
+          props.selected == 'Experience' &&
           <div>
             <h1 style={title}>Experience</h1>
-            {props.user.education.map((school, index) => {
+            {props.user.experience.map((job, index) => {
               return(
                 <div key={`experience_${index}`} style={{marginBottom: 50}}>
-                  <ExperienceFields experience={props.user.experience}/>
+                  <ExperienceFields experience={job}/>
                 </div>
               )
             })}
+            <AddExperience/>
           </div>
         }
 
         {
-          props.selected == 'Skills' && 
+          props.selected == 'Skills' &&
           <div>
             <h1 style={title}>Skills</h1>
             {props.user.skills.map((skill, index) => {
@@ -175,7 +172,7 @@ class Edit extends Component{
               style={buttonStyle}
               key='Account'
               >
-              Account 
+              Account
               </button>
               <button
               onClick={() => this.props.updateEditSelected('Education')}
@@ -184,16 +181,16 @@ class Edit extends Component{
               >
               Education
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Experience')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Experience')}
+              style={buttonStyle}
               key='Experience'
-              > 
-              Experience 
+              >
+              Experience
               </button>
-              <button 
-              onClick={() => this.props.updateEditSelected('Skills')} 
-              style={buttonStyle} 
+              <button
+              onClick={() => this.props.updateEditSelected('Skills')}
+              style={buttonStyle}
               key='Skills'
               >
               Skills

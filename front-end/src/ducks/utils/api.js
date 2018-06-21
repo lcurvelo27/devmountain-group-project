@@ -24,7 +24,6 @@ module.exports = {
 		return axios.put(`http://localhost:3005/api/users/skills`, details)
 	},
 	deleteSkill: (details) => {
-		console.log(details)
 		return axios.delete(`http://localhost:3005/api/users/skills`, {data: details})
 	},
 	addExperience: (details) => {
@@ -35,5 +34,9 @@ module.exports = {
 	},
 	deleteExperience: (details) => {
 		return axios.delete(`http://localhost:3005/api/users/experience`, {data: details})
+	},
+	updateUser: (user) => {
+		console.log(user)
+		return axios.put(`http://localhost:3005/api/users`, user)
 	}
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import {updateExperience, deleteExperience} from '../../ducks/action'
 
 class ExperienceFields extends Component{
   constructor() {
@@ -40,7 +41,10 @@ class ExperienceFields extends Component{
     this.setState({experience: this.props.experience})
   }
   saveEdit = () => {
-    this.props.update(this.state.experience)
+    this.props.updateExperience(this.state.experience)
+  }
+  deleteExperience = () => {
+    this.props.deleteExperience(this.state.experience)
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.experience !== this.props.experience) {
@@ -76,12 +80,12 @@ class ExperienceFields extends Component{
               <span style={title}>Description</span><input type="text" value={this.state.experience.description} onChange={(e) => this.updateDescription(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>Start Date</span><input type="text" value={this.state.experience.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
+              <span style={title}>Start Date</span><input type="date" value={this.state.experience.start_date} onChange={(e) => this.updateStartDate(e.target.value)}/>
             </div>
             <div style={spacer}>
-              <span style={title}>End Date</span><input type="text" value={this.state.experience.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
+              <span style={title}>End Date</span><input type="date" value={this.state.experience.end_date} onChange={(e) => this.updateEndDate(e.target.value)}/>
             </div>
-            <button onClick={()=>this.props.delete()}>Delete</button>
+            <button onClick={()=>this.deleteExperience()}>Delete</button>
           </label>
         </div>
         {this.state.experience !== this.props.experience
@@ -98,6 +102,9 @@ class ExperienceFields extends Component{
   }
 }
 
-
-
-export default ExperienceFields
+const mapStateToProps = state => {
+  return{
+    experienceTest: true
+  }
+}
+export default connect(mapStateToProps, {updateExperience, deleteExperience})(ExperienceFields)
