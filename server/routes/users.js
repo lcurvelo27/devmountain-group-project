@@ -24,14 +24,13 @@ module.exports = function(app) {
   })
 
   router.put(`/`, (req, res) => {
-    console.log(req.body)
     app.get('db').users.update_user({
       username: req.body.username,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       description: req.body.description,
       imgurl: req.body.imgurl,
-      authid: 'abc123'
+      authid: req.session.passport.user.authid
     })
       .then(response => {
         return res.status(200).send(response)

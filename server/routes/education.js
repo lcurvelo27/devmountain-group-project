@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   router.post('/', (req, res) => {
     app.get('db').education.create_education({
-      authid: 'abc123',
+      authid: req.session.passport.user.authid,
       school: req.body.school,
       emphasis: req.body.emphasis,
       start_date: req.body.start_date,
@@ -22,7 +22,7 @@ module.exports = function(app) {
   router.put('/', (req, res) => {
     console.log(req.body)
     app.get('db').education.update_education({
-      authid: 'abc123',
+      authid: req.session.passport.user.authid,
       school: req.body.school,
       emphasis: req.body.emphasis,
       start_date: req.body.start_date,
@@ -40,7 +40,7 @@ module.exports = function(app) {
 
   router.delete('/', (req, res) => {
     app.get('db').education.delete_education({
-      authid: 'abc123',
+      authid: req.session.passport.user.authid,
       id: req.body.id
     })
       .then(response => {
