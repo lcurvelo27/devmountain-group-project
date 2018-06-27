@@ -62,6 +62,7 @@ FROM
           FROM(
               SELECT
                 X.company,
+                X.location,
                 X.title,
                 X.description,
                 X.start_date,
