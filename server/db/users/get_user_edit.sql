@@ -5,39 +5,75 @@ SELECT
   U.description,
   U.imgurl,
   U.theme,
-
-  COALESCE(
-    json_agg(S) FILTER (
-      WHERE
-        S.authid IS NOT NULL
-    ),
-    '[]'
-  ) AS skills,
-  COALESCE(
-    json_agg(E) FILTER (
-      WHERE
-        E.authid IS NOT NULL
-    ),
-    '[]'
-  ) AS education,
-  COALESCE(
-    json_agg(X) FILTER (
-      WHERE
-        X.authid IS NOT NULL
-    ),
-    '[]'
-  ) AS experience
+  COALESCE(skills.skills, '[]') AS skills,
+  COALESCE(education.education, '[]') AS education,
+  COALESCE(experience.experience, '[]') AS experience
 FROM
-  users U
-  LEFT JOIN skills_table S ON U.authid = S.authid
-  LEFT JOIN education_table E ON U.authid = E.authid
-  LEFT JOIN experience_table X ON U.authid = X.authid
-WHERE U.authid = ${authid}
-
-GROUP BY
-  U.username,
-  U.firstname,
-  U.lastname,
-  U.description,
-  U.imgurl,
-  U.theme
+  users U FULL
+  JOIN (
+    SELECT
+      S.authid,
+      json_agg(
+        (
+          SELECT
+            x
+          FROM(
+              SELECT
+                S.skill,
+                S.lvl,
+                S.id
+            ) x
+        )
+      ) AS skills
+    FROM
+      skills_table S
+    GROUP BY
+      S.authid
+  ) AS skills ON skills.authid = U.authid FULL
+  JOIN (
+    SELECT
+      E.authid,
+      json_agg(
+        (
+          SELECT
+            x
+          FROM(
+              SELECT
+                E.school,
+                E.emphasis,
+                E.start_date,
+                E.end_date,
+                E.id
+            ) x
+        )
+      ) AS education
+    FROM
+      education_table E
+    GROUP BY
+      E.authid
+  ) AS education ON education.authid = U.authid FULL
+  JOIN (
+    SELECT
+      X.authid,
+      json_agg(
+        (
+          SELECT
+            x
+          FROM(
+              SELECT
+                X.company,
+                X.title,
+                X.description,
+                X.start_date,
+                X.end_date,
+                X.id
+            ) x
+        )
+      ) AS experience
+    FROM
+      experience_table X
+    GROUP BY
+      X.authid
+  ) AS experience ON experience.authid = U.authid
+WHERE
+  U.authid = ${authid}
